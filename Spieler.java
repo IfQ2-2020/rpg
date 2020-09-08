@@ -37,7 +37,7 @@ public class Spieler
     //inventar ist 4*9 Felder groß, anfangs leer, inventarCout definiert die Anzahl 'stackbaren' Items
     inventar = new Item[36];
     inventarCount = new int[36];
-    //speed steht als multiplier der Fortbewegung standartmäßig auf 1
+    //speed steht als multiplier der Fortbewegung Standartmäßig auf 1
     speed = 1;
     hunger = 10;
     health = 10;
