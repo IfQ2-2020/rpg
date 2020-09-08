@@ -10,6 +10,4 @@ public class Bewohner extends NPC
   public String getPunchline(){
     return punchline;
   }
-  
-  public 
 }
