@@ -1,7 +1,7 @@
 public class Haendler extends NPC
 {
   private Trade[] trades = new Trade[3];
-  private boolean notmore = false;
+  private boolean noMoreTrades = false;
   
   public Haendler(int pID, int[] position, String name) {
          super(pID, position, name);
@@ -10,7 +10,7 @@ public class Haendler extends NPC
          }            
   }
   
-  public void changeNotmore(){
-         notmore = !notmore;
+  public void changeTradeState(){
+         noMoreTrades = !noMoreTrades;
   }
 }
