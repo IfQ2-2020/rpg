@@ -1,16 +1,12 @@
-
-/**
- * Beschreiben Sie hier die Klasse food.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class Food extends Items
+public class Food extends Item
 {
-    int Naehrwert;
+    private int Naehrwert;
     
-    public Food(int p_Naerhwert)
+    public Food(int pNaehrwert)
     {
-        Naehrwert = p_Naehrwert
+        // super();
+        Naehrwert = pNaehrwert;
     }
+    
+    
 }
