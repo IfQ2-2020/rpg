@@ -2,7 +2,7 @@ public class World
 {
     private NPC[] npcs;
     private Spieler[] spieler;
-    // private Chunk[] loadedChunks;
+    private Chunk[] loadedChunks;
     
     public World()
     {
