@@ -10,7 +10,7 @@ public class Spieler
   private int id;
   private String name;
   //private texture texture;
-  private Items[][] inventar;
+  private Item[] inventar;
   private int[][] inventarCount;
   private int speed;
   //private Verbesserungen;
@@ -35,7 +35,7 @@ public class Spieler
     position[1] = pPositionY;
     position[2] = pDirection;
     //inventar ist 4*9 Felder groß, anfangs leer, inventarCout definiert die Anzahl 'stackbaren' Items
-    inventar = new Items[4][9];
+    inventar = new Item[4][9];
     inventarCount = new int[4][9];
     //speed steht als multiplier der Fortbewegung standartmäßig auf 1
     speed = 1;
@@ -82,10 +82,10 @@ public class Spieler
   public int getDirection()
   {return position[2];}
   
-  public Items[][] getInventar()
+  public Item[][] getInventar()
   {return inventar;}  
   
-  public Items getInventar(int position1, int position2)  
+  public Item getInventar(int position1, int position2)  
   {
     if (position1 <= 4 && position1 >= 0 && position2 <= 9 && position2 >=0) {
       return inventar[position1][position2];
