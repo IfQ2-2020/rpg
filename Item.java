@@ -1,18 +1,11 @@
-
-/**
- * Beschreiben Sie hier die Klasse Items.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class Items
+public class Item
 {
     private int ID;
     private int Texture;
     private String Name;
     private String Beschreibung;
 
-    public Items(int p_ID, String p_Name, String p_Beschreibung, int p_Texture)
+    public Item(int p_ID, String p_Name, String p_Beschreibung, int p_Texture)
     {
         ID = p_ID;
         Name = p_Name;
