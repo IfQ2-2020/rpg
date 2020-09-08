@@ -44,24 +44,31 @@ public class Spieler
     money = 10;
   }
   
-  public void laufen()
+  /**
+   * Spieler wird in Richtung pDirection um speed fortbewegt
+   */
+  public void laufen(int pDirection)
   {
-    switch (position[2]) {
-      case 0: 
-      position[1] += speed;    
-      break;
-      case 1: 
-      position[0] += speed; 
-      break;
-      case 2:
-      position[1] -= speed;
-      break;
-      case 3:
-      position[0] -= speed;
-      break;
-      default: 
-      
-    } // end of switch
+    if(pDirection >= 0 && pDirection<=4)
+    {
+        position[2] = pDirection;
+        switch (position[2]) {
+            case 0: 
+            position[1] += speed;    
+            break;
+            case 1: 
+            position[0] += speed; 
+            break;
+            case 2:
+            position[1] -= speed;
+            break;
+            case 3:
+            position[0] -= speed;
+            break;
+            default: 
+            break;
+        } // end of switch
+    }
   }
   
   public String getName()
@@ -94,6 +101,7 @@ public class Spieler
       return null;
     }}
 
+  //get-Methoden  
   public int[] getInventarCount()
   {
     return inventarCount;
@@ -120,6 +128,7 @@ public class Spieler
   public long getMoney()
   {return money;}
   
+  //set-Methoden
   public void setName(String pName)
   {name=pName;}
   
