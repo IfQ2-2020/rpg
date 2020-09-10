@@ -13,11 +13,4 @@ public class Trade
   public int[] getWare(){
          return ware;
   }
-    public Trade(int ware1, int ware2){
-        ware[0] = ware1;
-        ware[1] = ware2;
-    }
-  public int[] getWare(){
-        return ware;
-    }
 }
