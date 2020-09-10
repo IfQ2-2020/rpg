@@ -2,7 +2,7 @@ public class Haendler extends NPC
 {
   private Trade[] trades = new Trade[3];
   private boolean noMoreTrades = false;
-  
+  private Trade mTrade;
   
   public Haendler(int pID, int[] position, String name) {
          super(pID, position, name);

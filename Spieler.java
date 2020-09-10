@@ -18,6 +18,7 @@ public class Spieler
   private int health;
   //long auf Wunsch von Julius
   private long money;
+  private int ausgewaehlt;
   
   /**
   * Erstellen des Spielers, der Name wird vom Spieler mitgegeben,
@@ -42,6 +43,9 @@ public class Spieler
     hunger = 10;
     health = 10;
     money = 10;
+    //ausgewaehlt definiert, welches Item derzeit ausgewählt ist und somit benutzt werden kann
+    //kann eine Zahl von 0 bis [VAR] sein
+    ausgewaehlt = 0;
   }
   
   /**
@@ -68,6 +72,21 @@ public class Spieler
             default: 
             break;
         } // end of switch
+    }
+  }
+  
+  public void tool_benutzen()
+  {
+    if(inventar[ausgewaehlt] != null)
+    {
+        if(inventar[ausgewaehlt].getClass() == Combats.class)
+        {
+            
+        }
+        else if(inventar[ausgewaehlt].getClass() == Food.class)
+        {
+            
+        }
     }
   }
   
