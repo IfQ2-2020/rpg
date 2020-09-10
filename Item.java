@@ -1,50 +1,49 @@
 public class Item
 {
-    private int ID;
-    private int Texture;
-    private String Name;
-    private String Beschreibung;
+    private int id;
+    private String name;
+    private String beschreibung;
 
-    public Item(int p_ID, String p_Name, String p_Beschreibung, int p_Texture)
+    public Item(int p_ID, String p_Name, String p_Beschreibung)
     {
-        ID = p_ID;
-        Name = p_Name;
-        Beschreibung = p_Beschreibung;
-        Texture = p_Texture;
+        id = p_ID;
+        name = p_Name;
+        beschreibung = p_Beschreibung;
     }
 
     public int getID()
     {
-        return ID;
+        return id;
     }
 
     public void setID(int p_ID)
     {
-        ID = p_ID; 
+        id = p_ID; 
     }
 
     public String getName()
     {
-        return Name;
+        return name;
     }
 
     public void setName(String p_Name)
     {
-        Name = p_Name; 
+        name = p_Name; 
     }
 
     public String getBeschreibung()
     {
-        return Beschreibung;
+        return beschreibung;
     }
 
     public void setBeschreibung(String p_Beschreibung)
     {
-        Beschreibung = p_Beschreibung; 
+        beschreibung = p_Beschreibung; 
     }
 
+    // TODO: als textur zurückgeben
     public int getTexture()
     {
-        return Texture;
+        return id;
     }
 }
