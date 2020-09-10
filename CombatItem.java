@@ -14,7 +14,10 @@ public class CombatItem extends Item
     public CombatItem(int itemID, String pName, String pDesc, int p_durability, int p_damage, int p_range)
     {
         super(itemID, pName, pDesc);
-        durability = p_durability;
+        if(durability >= 0)
+        {
+            durability = p_durability;
+        }
         if(p_damage >= 0 && p_damage <=11)
         {
             damage = p_damage;
@@ -42,7 +45,10 @@ public class CombatItem extends Item
 
     public void setDurability(int p_durability)
     {
-        durability = p_durability;
+        if(durability >= 0)
+        {
+            durability = p_durability;
+        }
     }
 
     public void setDamage(int p_damage)
