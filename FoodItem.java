@@ -1,20 +1,12 @@
 public class FoodItem extends Item
 {
     private int Naehrwert;
-<<<<<<< HEAD
 
-    public Food(int p_Naehrwert)
-=======
-    
-    public Food(int itemID, String pName, String pBeschreibung,int pNaehrwert)
->>>>>>> 7eea9b2d7b90b632ccef3b22ff88e5d6470c2058
+    public FoodItem(int itemID, String pName, String pBeschreibung,int p_Naehrwert)
+
     {
-<<<<<<< HEAD
-        Naehrwert = p_Naehrwert;
-=======
         super(itemID, pName, pBeschreibung);
-        Naehrwert = pNaehrwert;
->>>>>>> 7eea9b2d7b90b632ccef3b22ff88e5d6470c2058
+        Naehrwert = p_Naehrwert;
     }
 
     public int getNaehrwert()
