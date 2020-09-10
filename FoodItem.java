@@ -1,4 +1,4 @@
-public class Food extends Item
+public class FoodItem extends Item
 {
     private int Naehrwert;
 <<<<<<< HEAD
