@@ -1,10 +1,9 @@
 public class Chunk{
 
-    private int ID;
     private Tile[] tiles;
     private int[] position;// von tile oben links
     
-    public Chunk(int pID, Chunk[] pNextChunks, int[] pPosition){
+    public Chunk(Chunk[] pNextChunks, int[] pPosition){
         //NextCHunks: oben 0 links 1 rechts 2 unten 3
         tiles = createTiles();
     }
@@ -14,7 +13,11 @@ public class Chunk{
         
         for(int y = 0; y < 16; y++){
             for(int x = 0; x < 16; x++){
-                ret[returnTilenumber(x,y)] = new Tile(0); 
+                if(y == 0 || x == 0 || y == 15 || x == 15){
+                    ret[returnTilenumber(x,y)] = new Tile(1); 
+                }else {
+                    ret[returnTilenumber(x,y)] = new Tile(0);
+                }
             }
         }
         
