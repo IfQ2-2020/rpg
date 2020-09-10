@@ -13,7 +13,7 @@ public class Spieler
   private Item[] inventar;
   private int[] inventarCount;
   private int speed;
-  //private Verbesserungen;
+  //private Verbesserungen1234;
   private int hunger;
   private int health;
   //long auf Wunsch von Julius
