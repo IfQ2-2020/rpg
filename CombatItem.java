@@ -19,7 +19,10 @@ public class CombatItem extends Item
         {
             damage = p_damage;
         }
-        range = p_range;
+        if(p_range >= 0)
+        {
+            range = p_range;
+        }
     }
 
     public int getDurability()
@@ -52,6 +55,9 @@ public class CombatItem extends Item
 
     public void setRange(int p_range)
     {
-        range = p_range;
+        if(p_range >= 0)
+        {
+            range = p_range;
+        }
     }
 }
