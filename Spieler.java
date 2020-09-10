@@ -14,7 +14,7 @@ public class Spieler
   private int[] inventarCount;
   private int speed;
   //private Verbesserungen;
-  private int hunger;
+  private int saettigung;
   private int health;
   //long auf Wunsch von Julius
   private long money;
@@ -40,7 +40,7 @@ public class Spieler
     inventarCount = new int[36];
     //speed steht als multiplier der Fortbewegung Standartmäßig auf 1
     speed = 1;
-    hunger = 10;
+    saettigung = 10;
     health = 10;
     money = 10;
     //ausgewaehlt definiert, welches Item derzeit ausgewählt ist und somit benutzt werden kann
@@ -95,7 +95,21 @@ public class Spieler
         }
         else if(inventar[ausgewaehlt].getClass() == FoodItem.class)
         {
-            
+            FoodItem tempFood = (FoodItem) inventar[ausgewaehlt];
+            if(this.saettigung < 10)
+            {
+                if(inventarCount[ausgewaehlt] == 1)
+                {
+                    inventar[ausgewaehlt]=null;
+                    inventarCount[ausgewaehlt]=0;
+                    saettigung += tempFood.getNaehrwert();
+                }
+                else
+                {
+                    inventarCount[ausgewaehlt] -= 1;
+                    saettigung +=tempFood.getNaehrwert();
+                }
+            }
         }
     }
   }
@@ -151,8 +165,8 @@ public class Spieler
   public int getHealth()
   {return health;}
   
-  public int getHunger()
-  {return hunger;}
+  public int getSaettigung()
+  {return saettigung;}
   
   public long getMoney()
   {return money;}
