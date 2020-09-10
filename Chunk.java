@@ -3,7 +3,7 @@ public class Chunk{
     private int ID;
     private Tile[] tiles;
     
-    public Chunk(int pID, Chunk[] pNextChunks){
+    public Chunk(int pID/*, Chunk[] pNextChunks*/){
         tiles = createTiles();
     }
     
