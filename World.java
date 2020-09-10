@@ -10,6 +10,7 @@ public class World
         npcs = new NPC[32];
         spieler = new Spieler[8];
         loadedChunks = new Chunk[5];
+        loadFirstChunks();
     }
     
     private void loadFirstChunks(){
