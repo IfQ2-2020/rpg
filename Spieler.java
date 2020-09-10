@@ -79,11 +79,19 @@ public class Spieler
   {
     if(inventar[ausgewaehlt] != null)
     {
-        if(inventar[ausgewaehlt].getClass() == Combats.class)
+        if(inventar[ausgewaehlt].getClass() == CombatItem.class)
         {
-            
+            if(inventar[ausgewaehlt].getDurability() <=1)
+            {
+                inventar[ausgewaehlt] = null;
+                inventarCount[ausgewaehlt] = 0;
+            }
+            else
+            {
+                inventar[ausgewaehlt].setDurability(1);
+            }
         }
-        else if(inventar[ausgewaehlt].getClass() == Food.class)
+        else if(inventar[ausgewaehlt].getClass() == FoodItem.class)
         {
             
         }
