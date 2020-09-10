@@ -11,7 +11,7 @@ public class Spieler
   private String name;
   //private texture texture;
   private Item[] inventar;
-  private int[][] inventarCount;
+  private int[] inventarCount;
   private int speed;
   //private Verbesserungen;
   private int hunger;
@@ -35,33 +35,40 @@ public class Spieler
     position[1] = pPositionY;
     position[2] = pDirection;
     //inventar ist 4*9 Felder groß, anfangs leer, inventarCout definiert die Anzahl 'stackbaren' Items
-    inventar = new Item[4][9];
-    inventarCount = new int[4][9];
-    //speed steht als multiplier der Fortbewegung standartmäßig auf 1
+    inventar = new Item[36];
+    inventarCount = new int[36];
+    //speed steht als multiplier der Fortbewegung Standartmäßig auf 1
     speed = 1;
     hunger = 10;
     health = 10;
     money = 10;
   }
   
-  public void laufen()
+  /**
+   * Spieler wird in Richtung pDirection um speed fortbewegt
+   */
+  public void laufen(int pDirection)
   {
-    switch (position[2]) {
-      case 0: 
-      position[1] += speed;    
-      break;
-      case 1: 
-      position[0] += speed; 
-      break;
-      case 2:
-      position[1] -= speed;
-      break;
-      case 3:
-      position[0] -= speed;
-      break;
-      default: 
-      
-    } // end of switch
+    if(pDirection >= 0 && pDirection<=4)
+    {
+        position[2] = pDirection;
+        switch (position[2]) {
+            case 0: 
+            position[1] += speed;    
+            break;
+            case 1: 
+            position[0] += speed; 
+            break;
+            case 2:
+            position[1] -= speed;
+            break;
+            case 3:
+            position[0] -= speed;
+            break;
+            default: 
+            break;
+        } // end of switch
+    }
   }
   
   public String getName()
@@ -82,30 +89,31 @@ public class Spieler
   public int getDirection()
   {return position[2];}
   
-  public Item[][] getInventar()
+  public Item[] getInventar()
   {return inventar;}  
   
-  public Item getInventar(int position1, int position2)  
+  public Item getInventar(int position)  
   {
-    if (position1 <= 4 && position1 >= 0 && position2 <= 9 && position2 >=0) {
-      return inventar[position1][position2];
+    if (position<= 36 && position >= 0) {
+      return inventar[position];
     }
     else{
       return null;
     }}
-  
-  public int[][] getInventarCount()
+
+  //get-Methoden  
+  public int[] getInventarCount()
   {
     return inventarCount;
   }
   
-  public int getInventarCount(int position1, int position2)
+  public int getInventarCount(int position)
   {
-    if (position1 <= 4 && position1 >= 0 && position2 <= 9 && position2 >=0) {
-      return inventarCount[position1][position2];
+    if (position <= 36 && position >= 0) {
+      return inventarCount[position];
     }
     else{
-      return null;
+      return 0;
     }}
   
   public int getSpeed()
@@ -120,6 +128,7 @@ public class Spieler
   public long getMoney()
   {return money;}
   
+  //set-Methoden
   public void setName(String pName)
   {name=pName;}
   

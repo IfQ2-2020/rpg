@@ -9,6 +9,7 @@ public class NPC
          position = _position;
          name = _name;
   }
+<<<<<<< HEAD
   public void getTexture(){
          //return Texture.ID
   }
@@ -19,4 +20,10 @@ public class NPC
     return name;}
   public int getID(){
     return ID;}
+=======
+  
+  /*public int getTexture(){
+         return Texture.getID();
+  }*/
+>>>>>>> 3a0be07cf18c85b9c250e1e73187b0c795967978
 }
