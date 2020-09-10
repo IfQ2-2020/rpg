@@ -13,7 +13,7 @@ public class Spieler
   private Item[] inventar;
   private int[] inventarCount;
   private int speed;
-  //private Verbesserungen1234;
+  //private Verbesserungen;
   private int hunger;
   private int health;
   //long auf Wunsch von Julius
@@ -81,14 +81,16 @@ public class Spieler
     {
         if(inventar[ausgewaehlt].getClass() == CombatItem.class)
         {
-            if(inventar[ausgewaehlt].getDurability() <=1)
+            CombatItem tempCombat = (CombatItem) inventar[ausgewaehlt];
+            if(tempCombat.getDurability() <=1)
             {
                 inventar[ausgewaehlt] = null;
                 inventarCount[ausgewaehlt] = 0;
             }
             else
             {
-                inventar[ausgewaehlt].setDurability(1);
+                tempCombat.setDurability(tempCombat.getDurability()-1);
+                inventar[ausgewaehlt] = (Item) tempCombat;
             }
         }
         else if(inventar[ausgewaehlt].getClass() == FoodItem.class)
