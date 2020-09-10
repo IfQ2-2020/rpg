@@ -12,4 +12,11 @@ public class NPC
   public void getTexture(){
          //return Texture.ID
   }
+  public int[] getPosition(){
+    return position;
+    }
+  public String getName(){
+    return name;}
+  public int getID(){
+    return ID;}
 }
