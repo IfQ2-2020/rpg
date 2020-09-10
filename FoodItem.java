@@ -6,7 +6,10 @@ public class FoodItem extends Item
 
     {
         super(itemID, pName, pBeschreibung);
-        Naehrwert = p_Naehrwert;
+        if(p_Naehrwert >= 0 && p_Naehrwert <=11)
+        {
+            Naehrwert = p_Naehrwert;
+        }
     }
 
     public int getNaehrwert()
