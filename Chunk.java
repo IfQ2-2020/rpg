@@ -2,9 +2,10 @@ public class Chunk{
     
     private int ID;// Starts at 1
     private Tile[] tiles;
+    private int[] position;// von tile oben links
     
-    public Chunk(int pID, Chunk[] pNextChunks){// oben links 0 oben mitte 1 
-        //oben rechts 2 mitte links 3 mitte rechts 4,..., unten rechts 7
+    public Chunk(int pID, Chunk[] pNextChunks, int[] pPosition){
+        //NextCHunks: oben 0 links 1 rechts 2 unten 3
         tiles = createTiles();
     }
     
