@@ -1,5 +1,6 @@
 public class NPC
 {
+<<<<<<< HEAD
   private int ID;
   private int[] position = new int[3];
   private String name;
@@ -19,7 +20,18 @@ public class NPC
 
     public int[] getPosition(){
         return position;
+=======
+    private int ID;
+    private int[] position = new int[3];
+    private String name;
+  
+    public NPC(int _ID, int[] _position, String _name){
+        ID = _ID;
+        position = _position;
+        name = _name;
+>>>>>>> c53a284cb585314712af23c1dbab4921ca916c31
     }
+<<<<<<< HEAD
     public String getName(){
         return name;
     }
@@ -28,6 +40,20 @@ public class NPC
         return ID;
     }
 
+=======
+
+    public int[] getPosition(){
+        return position;
+    }
+    public String getName(){
+        return name;
+    }
+    
+    public int getID(){
+        return ID;
+    }
+  
+>>>>>>> c53a284cb585314712af23c1dbab4921ca916c31
     /*public int getTexture(){
     /*    return Texture.getID();
     }*/
