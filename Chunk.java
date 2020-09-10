@@ -1,6 +1,5 @@
 public class Chunk{
-    
-<<<<<<< HEAD
+
     private int ID;
 =======
     private int ID;// Starts at 1
