@@ -23,13 +23,13 @@ public class NPC
         return position;
     }
     public int getPositionX(){
-        return position[1];
+        return position[0];
     }
     public int getPositionY(){
-        return position[2];
+        return position[1];
     }
     public int getDirection(){
-        return position[3];
+        return position[2];
     }
     public String getName(){
         return name;
