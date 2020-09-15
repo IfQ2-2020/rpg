@@ -13,4 +13,13 @@ public class Trade
   public int[] getWare(){
          return ware;
   }
+  /**public int getWare1()
+   * return ware[0]
+   * 
+   * public int getWare2()
+   * return ware[1]
+   * 
+   */
+  
+  
 }
