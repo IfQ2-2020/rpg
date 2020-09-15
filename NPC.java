@@ -7,10 +7,10 @@ public class NPC
   //private Texture mTexture;
 
 
-  public NPC(int _ID,int pSpeed, int position1, int position2, int direction, String _name){
+  public NPC(int _ID,int pSpeed, int positionX, int positionY, int direction, String _name){
          ID = _ID;
-         position[0] = position1;
-         position[1] = position2;
+         position[0] = positionX;
+         position[1] = positionY;
          position[2] = direction;
          name = _name;
          speed = pSpeed;
@@ -22,10 +22,18 @@ public class NPC
     public int[] getPosition(){
         return position;
     }
+    public int getPositionX(){
+        return position[1];
+    }
+    public int getPositionY(){
+        return position[2];
+    }
+    public int getDirection(){
+        return position[3];
+    }
     public String getName(){
         return name;
     }
-    
     public int getID(){
         return ID;
     }
