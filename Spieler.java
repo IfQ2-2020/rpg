@@ -14,7 +14,8 @@ public class Spieler
   private int[] inventarCount;
   private int speed;
   //private Verbesserungen;
-  private int saettigung;
+  //Für den Spieler wird saettigung als auf(!)gerundeter int-Wert angegeben
+  private double saettigung;
   private int health;
   //long auf Wunsch von Julius
   private long money;
@@ -44,7 +45,7 @@ public class Spieler
     health = 10;
     money = 10;
     //ausgewaehlt definiert, welches Item derzeit ausgewählt ist und somit benutzt werden kann
-    //kann eine Zahl von 0 bis [VAR] sein
+    //kann eine Zahl von 0 bis 35 sein
     ausgewaehlt = 0;
   }
   
@@ -72,10 +73,12 @@ public class Spieler
             default: 
             break;
         } // end of switch
+        saettigung -= 0.1;
+        restoreHealth();
     }
   }
   
-  public void tool_benutzen()
+  public void toolBenutzen()
   {
     if(inventar[ausgewaehlt] != null)
     {
@@ -102,16 +105,26 @@ public class Spieler
                 {
                     inventar[ausgewaehlt]=null;
                     inventarCount[ausgewaehlt]=0;
-                    saettigung += tempFood.getNaehrwert();
+                    saettigung += tempFood.getNaehrwert();                    
                 }
                 else
                 {
                     inventarCount[ausgewaehlt] -= 1;
                     saettigung +=tempFood.getNaehrwert();
                 }
+                this.restoreHealth();
             }
         }
     }
+  }
+  
+  public void restoreHealth()
+  {
+      if(saettigung >=8 && health <= 8)
+      {
+          saettigung -= 0.75;
+          health += 1;
+      }
   }
   
   public String getName()
@@ -165,11 +178,14 @@ public class Spieler
   public int getHealth()
   {return health;}
   
-  public int getSaettigung()
+  public double getSaettigung()
   {return saettigung;}
   
   public long getMoney()
   {return money;}
+  
+  public int getAusgewaehlt()
+  {return ausgewaehlt;}
   
   //set-Methoden
   public void setName(String pName)
@@ -199,4 +215,7 @@ public class Spieler
   
   public void setMoney(long pMoney)
   {money=pMoney;}
+  
+  public void setAusgewaehlt(int pAusgewaehlt)
+  {ausgewaehlt=pAusgewaehlt;}
 }
