@@ -13,4 +13,9 @@ public class Haendler extends NPC
   public void changeTradeState(){
          noMoreTrades = !noMoreTrades;
   }
+  public void zerlegen(){
+      
+    }
 }
+
+

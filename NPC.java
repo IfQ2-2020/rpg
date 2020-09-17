@@ -1,14 +1,16 @@
 public class NPC
 {
-  private int ID;
+  private int generalID;
+  private int specialID;
   private int[] position = new int[3];
   private String name;
   private int speed;
   //private Texture mTexture;
 
 
-  public NPC(int _ID,int pSpeed, int positionX, int positionY, int direction, String _name){
-         ID = _ID;
+  public NPC(int genID, int speID, int pSpeed, int positionX, int positionY, int direction, String _name){
+         generalID = genID;
+         specialID = speID;
          position[0] = positionX;
          position[1] = positionY;
          position[2] = direction;
@@ -43,8 +45,11 @@ public class NPC
     public String getName(){
         return name;
     }
-    public int getID(){
-        return ID;
+    public int getGenID(){
+        return generalID;
+    }
+    public int getSpeID(){
+        return specialID;
     }
     public void laufen(int pDirection)
     {

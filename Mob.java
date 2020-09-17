@@ -25,7 +25,18 @@ public class Mob extends NPC
         health = pHealth;
         strength = pStrength;
         lootingmass = pLootingmass;
+        //lootingmass = reale Lootanzahl -1
         lootingtable = new int[lootingmass];
+    }
+    public void lootSteup(){
+        for(int i = 0; i < lootingmass ; i++){
+            int loot = posibles();
+            lootingtable[i] = loot;
+        }
+    }
+    public int posibles(){
+        double possible = Math.random()*10;
+        return (int)possible;
     }
     public int getLoot(int lootspot){
         return lootingtable[lootspot];
@@ -33,6 +44,12 @@ public class Mob extends NPC
     public void setLoot(int loot, int lootspot){
         lootingtable[lootspot] = loot;
     }
-
+    public int getStrength(){
+        return strength;
+    }
+    public int getHealth(){
+        return health;
+    }
+    
     
 }
