@@ -20,6 +20,7 @@ public class Spieler
   //long auf Wunsch von Julius
   private long money;
   private int ausgewaehlt;
+  private World world;
   
   /**
   * Erstellen des Spielers, der Name wird vom Spieler mitgegeben,
@@ -27,7 +28,7 @@ public class Spieler
   * health, hunger, money und speed werden auf Standartwert gesetzt.
   * id und position werden vom Server generiert.
   */
-  public Spieler(String pName, int pId, int pPositionX, int pPositionY, int pDirection)
+  public Spieler(String pName, int pId, int pPositionX, int pPositionY, int pDirection, World pWorld)
   {
     name = pName;
     id = pId;
@@ -46,7 +47,8 @@ public class Spieler
     money = 10;
     //ausgewaehlt definiert, welches Item derzeit ausgewählt ist und somit benutzt werden kann
     //kann eine Zahl von 0 bis 35 sein
-    ausgewaehlt = 0;
+    ausgewaehlt = 0; 
+    world = pWorld;
   }
   
   /**
@@ -57,16 +59,22 @@ public class Spieler
     if(pDirection >= 0 && pDirection<=4)
     {
         position[2] = pDirection;
+        //Test ob Tile in Luafrichtung unüberwindbar
+        //if(!world.chunk.tile.getueberwindbar)
         switch (position[2]) {
+            // Pfeil nach oben / w
             case 0: 
             position[1] += speed;    
             break;
+            //Pfeil nach rechts / d
             case 1: 
             position[0] += speed; 
             break;
+            //Pfeil nach unten / s
             case 2:
             position[1] -= speed;
             break;
+            //Pfeil nach links / a
             case 3:
             position[0] -= speed;
             break;
@@ -78,6 +86,7 @@ public class Spieler
     }
   }
   
+  //aktiviert durch linke Maustaste
   public void toolBenutzen()
   {
     if(inventar[ausgewaehlt] != null)
@@ -118,6 +127,12 @@ public class Spieler
     }
   }
   
+  public void handeln()
+  {
+      //ausgelöst durch rechte maustaste
+      //if(world.npc.getClass() == Haendler)
+    }
+  
   public void restoreHealth()
   {
       if(saettigung >=8 && health <= 8)
@@ -126,6 +141,8 @@ public class Spieler
           health += 1;
       }
   }
+  
+  //get-Methoden  
   
   public String getName()
   {return name;}
@@ -157,7 +174,6 @@ public class Spieler
       return null;
     }}
 
-  //get-Methoden  
   public int[] getInventarCount()
   {
     return inventarCount;
@@ -188,6 +204,7 @@ public class Spieler
   {return ausgewaehlt;}
   
   //set-Methoden
+  
   public void setName(String pName)
   {name=pName;}
   
