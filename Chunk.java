@@ -15,6 +15,7 @@ public class Chunk{
     private Tile[] createTiles(Chunk[] pNextChunks, boolean isFirst){
         Tile[] ret = new Tile[16*16];
         Chunk[] nextChunks = pNextChunks;
+        //First Blocktypes
         if(!isFirst){
             for(int y = 0; y < 16; y++){
                 for(int x = 0; x < 16; x++){
@@ -49,7 +50,32 @@ public class Chunk{
                 }
             }
         }
+        
+        //Load River
+        
+        for(int y = 0; y < 16; y++){
+                for(int x = 0; x < 16; x++){
+                    if(nextChunks[0] != null){// unten nach oben
+                       y = 15 - y;
+                       
+                    }
+                    if(nextChunks[1] != null){//rechts links
+                        x = 15 - x;
+                    }
+                    if(nextChunks[2] != null){//links rechts
+                        
+                    }
+                    if(nextChunks[3] != null){//normal
+                        
+                    }
+                }
+            }
+        
         return ret;
+    }
+    
+    public void drawChunk(){
+        
     }
     
     private int returnTilenumber(int pX, int pY){

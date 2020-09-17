@@ -24,4 +24,12 @@ public class World
         loadedChunks[4] = new Chunk(new Chunk[]{loadedChunks[0],null,null,null},
                                     new int[]{0,-16}, false);                            
     }
+    
+    public void drawWorld(){
+        int[] position = spieler[0].getPosition();
+        
+        for(int i = 0; i< loadedChunks.length; i++){
+            loadedChunks[i].drawChunk();
+        }
+    }
 }
