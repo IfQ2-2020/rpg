@@ -11,7 +11,7 @@ public class Mob extends NPC
     private int health;
     private int strength;
     private int lootingmass;
-    private int[] lootingtable = new int[lootingmass];
+    private int[] lootingtable;
     
     
 
@@ -25,6 +25,13 @@ public class Mob extends NPC
         health = pHealth;
         strength = pStrength;
         lootingmass = pLootingmass;
+        lootingtable = new int[lootingmass];
+    }
+    public int getLoot(int lootspot){
+        return lootingtable[lootspot];
+    }
+    public void setLoot(int loot, int lootspot){
+        lootingtable[lootspot] = loot;
     }
 
     
