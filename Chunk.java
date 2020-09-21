@@ -1,14 +1,15 @@
 public class Chunk{
-
     private Tile[] tiles;
     private int[] position;// von tile oben links
     private boolean isFirstChunk;
+    private World world;
     
-    public Chunk(Chunk[] pNextChunks, int[] pPosition, boolean pisFirstChunk){
+    public Chunk(Chunk[] pNextChunks, int[] pPosition, boolean pisFirstChunk, World pWorld){
         //NextCHunks: oben 0 links 1 rechts 2 unten 3
         isFirstChunk = pisFirstChunk;
         tiles = createTiles(pNextChunks, isFirstChunk);
         position = pPosition;
+        world = pWorld;
         
     }
     
@@ -50,6 +51,14 @@ public class Chunk{
                 }
             }
         }
+        
+        //Check for 
+        for(int y = 0; y < 16; y++){
+                for(int x = 0; x < 16; x++){
+                    if(world.checkForRiver(x, y)){ret[returnTilenumber(x,y)] = new Tile(2);}
+                }
+            }
+        
         
         return ret;
     }

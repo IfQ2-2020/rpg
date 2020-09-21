@@ -12,19 +12,19 @@ public class World
         spieler = new Spieler[8];
         loadedChunks = new Chunk[5];
         loadFirstChunks();
-        flussGeneration();
+        isRiver = flussGeneration();
     }
     
     private void loadFirstChunks(){
-        loadedChunks[0] = new Chunk(null,new int[]{0,0}, true);
+        loadedChunks[0] = new Chunk(null,new int[]{0,0}, true,this);
         loadedChunks[1] = new Chunk(new Chunk[]{null,null,null,loadedChunks[0]},
-                                    new int[]{0,16}, false);
+                                    new int[]{0,16}, false,this);
         loadedChunks[2] = new Chunk(new Chunk[]{null,null,loadedChunks[0],null},
-                                    new int[]{-16,0}, false);
+                                    new int[]{-16,0}, false,this);
         loadedChunks[3] = new Chunk(new Chunk[]{null,loadedChunks[0],null,null},
-                                    new int[]{16,0}, false); 
+                                    new int[]{16,0}, false,this); 
         loadedChunks[4] = new Chunk(new Chunk[]{loadedChunks[0],null,null,null},
-                                    new int[]{0,-16}, false);                            
+                                    new int[]{0,-16}, false,this);                            
     }
     
     private boolean[][] flussGeneration(){
@@ -85,4 +85,6 @@ public class World
             loadedChunks[i].drawChunk();
         }
     }
+    
+    public boolean checkForRiver(int x, int y){return isRiver[y][x];}
 }
