@@ -51,26 +51,6 @@ public class Chunk{
             }
         }
         
-        //Load River
-        
-        for(int y = 0; y < 16; y++){
-                for(int x = 0; x < 16; x++){
-                    if(nextChunks[0] != null){// unten nach oben
-                       y = 15 - y;
-                       
-                    }
-                    if(nextChunks[1] != null){//rechts links
-                        x = 15 - x;
-                    }
-                    if(nextChunks[2] != null){//links rechts
-                        
-                    }
-                    if(nextChunks[3] != null){//normal
-                        
-                    }
-                }
-            }
-        
         return ret;
     }
     
