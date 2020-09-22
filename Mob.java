@@ -14,8 +14,6 @@ public class Mob extends NPC
     private int[] lootingtable;
     private int[] lootposs;
     
-    
-
     /**
      * Konstruktor für Objekte der Klasse Mob
      */
@@ -40,6 +38,7 @@ public class Mob extends NPC
             lootingtable[i] = loot;
         }
     }
+    
     public int possibles(){
         double possible = Math.random()*5;
         return (int)possible;
