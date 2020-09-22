@@ -58,24 +58,34 @@ public class Spieler
     if(pDirection >= 0 && pDirection<=4)
     {
         direction = pDirection;
-        //Test ob Tile in Luafrichtung unüberwindbar
-        //if(!world.chunk.tile.getueberwindbar)
         switch (direction) {
             // Pfeil nach oben / w
             case 0: 
-            position=position.add(new Vector2(0, speed));
+            if(!world.checkForRiver(position.getY()+1, position.getX()))
+            {
+                position=position.add(new Vector2(0, speed));
+            }
             break;
             //Pfeil nach rechts / d
             case 1: 
-            position=position.add(new Vector2(speed, 0)); 
+            if(!world.checkForRiver(position.getY(), position.getX()+1))
+            {
+                position=position.add(new Vector2(speed, 0)); 
+            }
             break;
             //Pfeil nach unten / s
             case 2:
-            position=position.subtract(new Vector2(0, speed));
+            if(!world.checkForRiver(position.getY()-1, position.getX()))
+            {
+                position=position.subtract(new Vector2(0, speed));
+            }
             break;
             //Pfeil nach links / a
             case 3:
-            position=position.subtract(new Vector2(speed, 0));
+            if(!world.checkForRiver(position.getY(), position.getX()-1))
+            {
+                position=position.subtract(new Vector2(speed, 0));
+            }
             break;
             default: 
             break;
