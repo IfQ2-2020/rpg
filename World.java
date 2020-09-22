@@ -16,15 +16,15 @@ public class World
     }
     
     private void loadFirstChunks(){
-        loadedChunks[0] = new Chunk(null,new int[]{0,0}, true,this);
+        loadedChunks[0] = new Chunk(null,new Vector2(0,0), true,this);
         loadedChunks[1] = new Chunk(new Chunk[]{null,null,null,loadedChunks[0]},
-                                    new int[]{0,16}, false,this);
+                                    new Vector2(0,16), false,this);
         loadedChunks[2] = new Chunk(new Chunk[]{null,null,loadedChunks[0],null},
-                                    new int[]{-16,0}, false,this);
+                                    new Vector2(-16,0), false,this);
         loadedChunks[3] = new Chunk(new Chunk[]{null,loadedChunks[0],null,null},
-                                    new int[]{16,0}, false,this); 
+                                    new Vector2(16,0), false,this); 
         loadedChunks[4] = new Chunk(new Chunk[]{loadedChunks[0],null,null,null},
-                                    new int[]{0,-16}, false,this);                            
+                                    new Vector2(0,-16), false,this);                            
     }
     
     private boolean[][] flussGeneration(){
@@ -71,7 +71,7 @@ public class World
         return ret;
     }
     
-    public  float distance_squared(int x, int y){
+    private  float distance_squared(int x, int y){
         float dx = 2 * x / width - 1;
         float dy = 2 * y / height - 1;
         //at this point 0 <= dx <= 1 and 0 <= dy <= 1
@@ -86,5 +86,5 @@ public class World
         }
     }
     
-    public boolean checkForRiver(int x, int y){return isRiver[y][x];}
+    public boolean checkForRiver(Vector2 t){return isRiver[t.getY()+height/2][t.getX()+width/2];}
 }
