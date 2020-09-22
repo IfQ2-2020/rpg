@@ -6,7 +6,8 @@ import java.awt.event.KeyListener;
  */
 public class Spieler
 {
-  private int[] position;
+  private Vector2 position;
+  private int direction;
   private int id;
   private String name;
   //private texture texture;
@@ -33,10 +34,8 @@ public class Spieler
     name = pName;
     id = pId;
     //position[X;Y;Direction (0 oben, 1 rechts, 2 unten, 3 links)]
-    position = new int[3];
-    position[0] = pPositionX;
-    position[1] = pPositionY;
-    position[2] = pDirection;
+    position = new Vector2(pPositionX, pPositionY);
+    direction = pDirection;
     //inventar ist 4*9 Felder groß, anfangs leer, inventarCout definiert die Anzahl 'stackbaren' Items
     inventar = new Item[36];
     inventarCount = new int[36];
@@ -58,25 +57,25 @@ public class Spieler
   {
     if(pDirection >= 0 && pDirection<=4)
     {
-        position[2] = pDirection;
+        direction = pDirection;
         //Test ob Tile in Luafrichtung unüberwindbar
         //if(!world.chunk.tile.getueberwindbar)
-        switch (position[2]) {
+        switch (direction) {
             // Pfeil nach oben / w
             case 0: 
-            position[1] += speed;    
+            position=position.add(new Vector2(0, speed));
             break;
             //Pfeil nach rechts / d
             case 1: 
-            position[0] += speed; 
+            position=position.add(new Vector2(speed, 0)); 
             break;
             //Pfeil nach unten / s
             case 2:
-            position[1] -= speed;
+            position=position.subtract(new Vector2(0, speed));
             break;
             //Pfeil nach links / a
             case 3:
-            position[0] -= speed;
+            position=position.subtract(new Vector2(speed, 0));
             break;
             default: 
             break;
@@ -150,17 +149,17 @@ public class Spieler
   public int getId()
   {return id;}
   
-  public int[] getPosition()
+  public Vector2 getPosition()
   {return position;}
   
   public int getPositionX()
-  {return position[0];}
+  {return position.getX();}
   
   public int getPositionY()
-  {return position[1];}
+  {return position.getY();}
   
   public int getDirection()
-  {return position[2];}
+  {return direction;}
   
   public Item[] getInventar()
   {return inventar;}  
@@ -208,19 +207,19 @@ public class Spieler
   public void setName(String pName)
   {name=pName;}
   
-  public void setPosition(int[] pPosition)
+  public void setPosition(Vector2 pPosition)
   {position=pPosition;}
   
   public void setPositionX(int pPositionX)
-  {position[0]=pPositionX;}
+  {position=new Vector2(pPositionX, position.getY());}
   
   public void setPositionY(int pPositionY)
-  {position[1]=pPositionY;}
+  {position=new Vector2(position.getX(), pPositionY);}
   
   public void setDirection(int pDirection)
   {
     if (pDirection<=3 && pDirection>=0) {
-      position[2]=pDirection;
+      direction=pDirection;
     }
   }
   
