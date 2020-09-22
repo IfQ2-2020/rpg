@@ -1,10 +1,10 @@
 public class NPC
 {
-  private int generalID;
-  private int specialID;
-  private int[] position = new int[3];
-  private String name;
-  private int speed;
+    private int generalID;
+    private int specialID;
+    private int[] position = new int[3];
+    private String name;
+    private int speed;
   //private Texture mTexture;
 
 
