@@ -9,16 +9,13 @@ import java.io.IOException;
 
 public class Game extends Gamemode
 {
-//    private World world;
+    private World world;
     
     public Game()
     {
         super();
         this.addKeyListener(new KeyCheck());
     }
-    
-    // test image
-    public BufferedImage testImg;
    
     private static final int relDrawPos = 768/2 - 32;
     

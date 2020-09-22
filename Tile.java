@@ -1,3 +1,5 @@
+import java.awt.image.BufferedImage;
+
 public class Tile
 {
     private int ID;
@@ -11,9 +13,9 @@ public class Tile
         return ID;
     }
     
-    /*public getTexture(){
-        
-    }*/
+    public BufferedImage getTexture() {
+        return Textures.get(this.ID);
+    }
     
     public boolean getUeberwindbar(){
         return ueberwindbar;
