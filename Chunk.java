@@ -1,15 +1,16 @@
 public class Chunk{
     private Tile[] tiles;
-    private Vector2 position;// von tile oben links
+    private Vector2 position;// von tile unten links
     private boolean isFirstChunk;
     private World world;
     
     public Chunk(Chunk[] pNextChunks, Vector2 pPosition, boolean pisFirstChunk, World pWorld){
         //NextCHunks: oben 0 links 1 rechts 2 unten 3
         isFirstChunk = pisFirstChunk;
-        tiles = createTiles(pNextChunks, isFirstChunk);
         position = pPosition;
         world = pWorld;
+        tiles = createTiles(pNextChunks, isFirstChunk);
+        
         
     }
     

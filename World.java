@@ -79,12 +79,16 @@ public class World
     } 
     
     public void drawWorld(){
-        int[] position = spieler[0].getPosition();
+        Vector2 position = spieler[0].getPosition();
         
         for(int i = 0; i< loadedChunks.length; i++){
             loadedChunks[i].drawChunk();
         }
     }
     
-    public boolean checkForRiver(Vector2 t){return isRiver[t.getY()+height/2][t.getX()+width/2];}
+    public boolean checkForRiver(Vector2 t){
+        System.out.print(t.getX());
+        //return isRiver[t.getY()+height/2][t.getX()+width/2];
+        return false;
+    }
 }
