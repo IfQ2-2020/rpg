@@ -2,20 +2,51 @@ public class World
 {
     private NPC[] npcs;
     private Spieler[] spieler;
+
+    /* Die vom localPlayer geladenen Chunks
+    1  2  3
+    4 (5) 6 // 5 auf den Spieler zentriert
+    7  8  9
+     */
     private Chunk[] loadedChunks;
-    private boolean isRiver[][];
-    private int width = 1600, height = 1600; 
+    private int width = 1600, height = 1600;
+    private Spieler localPlayer;
     
     public World()
     {
         npcs = new NPC[32];
         spieler = new Spieler[8];
-        loadedChunks = new Chunk[5];
-        loadFirstChunks();
-        isRiver = flussGeneration();
+        loadedChunks = new Chunk[9];
+    }
+
+    public Spieler getLocalPlayer() {
+        return localPlayer;
     }
     
-    private void loadFirstChunks(){
+    public Chunk[] getLoadedChunks() {
+        return loadedChunks;
+    }
+
+    public void loadNextChunks() {
+        Vector2 pos = localPlayer.getPosition();
+
+    }
+
+    public boolean checkObstacle(Vector2 position) {
+        for (Chunk c : loadedChunks) {
+            Tile[] tiles = c.getTiles();
+            for (Tile tile : tiles) {
+                if (tile.getPosition().equals(position)) {
+                    return tile.getUeberwindbar();
+                }
+            }
+        }
+
+        return false;
+    }
+
+    // ?
+    /*private void loadFirstChunks(){
         loadedChunks[0] = new Chunk(null,new Vector2(0,0), true,this);
         loadedChunks[1] = new Chunk(new Chunk[]{null,null,null,loadedChunks[0]},
                                     new Vector2(0,16), false,this);
@@ -25,70 +56,5 @@ public class World
                                     new Vector2(16,0), false,this); 
         loadedChunks[4] = new Chunk(new Chunk[]{loadedChunks[0],null,null,null},
                                     new Vector2(0,-16), false,this);                            
-    }
-    
-    private boolean[][] flussGeneration(){
-        boolean[][] ret = new boolean[height][width];
-        
-        for(int i = 0; i < height; ++i) {     // y
-            for(int j = 0; j < width; ++j) {  // x
-                double x = (double)j/((double)width);
-                double y = (double)i/((double)height);
-    
-                // Typical Perlin noise
-                double n = ImprovedNoise.noise(10 * x, 10 * y, 1);
-                // Wood like structure
-                n = n - Math.floor(n);
-    
-                if(n > 0.3 + 0.4 * distance_squared(i,j)){
-                        ret[i][j] = false;        
-                        //System.out.print(0);
-                }else{
-                        double a = ImprovedNoise.noise(10 * (x), 10 * (y-1/(double)width), 1);
-                        double b = ImprovedNoise.noise(10 * (x-1/(double)width), 10 * (y), 1);
-                        double c = ImprovedNoise.noise(10 * (x+1/(double)width), 10 * (y), 1);
-                        double d = ImprovedNoise.noise(10 * (x), 10 * (y+1/(double)width), 1);
-                        a = a - Math.floor(a); 
-                        b = b - Math.floor(b); 
-                        c = c - Math.floor(c); 
-                        d = d - Math.floor(d); 
-                              
-                        if((a > 0.3 + 0.4 * distance_squared(i,j) && y != 0 )||
-                              (b > 0.3 + 0.4 * distance_squared(i,j) && x != 0) ||
-                              (c > 0.3 + 0.4 * distance_squared(i,j) && x != width-1 )||
-                              (d > 0.3 + 0.4 * distance_squared(i,j) && y != height - 1))
-                               {
-                                   //System.out.print(1);
-                                   ret[i][j] = true; }
-                                else{
-                                    ret[i][j] = false; 
-                                    //System.out.print(0);
-                                }
-                        }
-            }
-            //System.out.println();
-        }
-        return ret;
-    }
-    
-    private  float distance_squared(int x, int y){
-        float dx = 2 * x / width - 1;
-        float dy = 2 * y / height - 1;
-        //at this point 0 <= dx <= 1 and 0 <= dy <= 1
-        return dx*dx + dy*dy;
-    } 
-    
-    public void drawWorld(){
-        Vector2 position = spieler[0].getPosition();
-        
-        for(int i = 0; i< loadedChunks.length; i++){
-            loadedChunks[i].drawChunk();
-        }
-    }
-    
-    public boolean checkForRiver(Vector2 t){
-        System.out.print(t.getX());
-        //return isRiver[t.getY()+height/2][t.getX()+width/2];
-        return false;
-    }
+    }*/
 }

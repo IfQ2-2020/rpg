@@ -6,9 +6,14 @@ public class Tile
     private Vector2 position;
     private boolean ueberwindbar = true;
     
-    public Tile(int pID, int x, int y){
+    public Tile(int pID, int x, int y) {
         ID = pID;
         position = new Vector2(x, y);
+    }
+
+    public Tile(int pID, Vector2 pPosition) {
+        ID = pID;
+        position = pPosition;
     }
     
     public int getID(){
@@ -25,5 +30,9 @@ public class Tile
     
     public boolean getUeberwindbar(){
         return ueberwindbar;
+    }
+
+    public void setUeberwindbar(boolean value) {
+        ueberwindbar = value;
     }
 }

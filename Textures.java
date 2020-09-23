@@ -7,13 +7,22 @@ import javax.imageio.ImageIO;
 /*
  * Author: Julius K
  * Klasse zum schnelleren laden von Texturen
- * (Damit die Texturen nicht bei jedem laden neu von der Datei aus geladen werden)
+ * (Damit die Texturen nicht bei jedem laden neu von der Datei aus geladen werden müssen)
  */
 public class Textures
 {
     private static HashMap<Integer, BufferedImage> cachedTextures =
         new HashMap<Integer, BufferedImage>();
-    
+
+    public static BufferedImage loadFile(String path) {
+        try {
+            BufferedImage ret = ImageIO.read(new File(path));
+            return ret;
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
     public static BufferedImage get(int id) {
         BufferedImage ret = cachedTextures.get(id);
         if (ret != null)
@@ -23,7 +32,7 @@ public class Textures
             ret = ImageIO.read(new File("./textures/" + id + ".png"));
             cachedTextures.put(id, ret);
             return ret;
-        } catch (IOException _) {
+        } catch (IOException e) {
             return null;
         }
     }

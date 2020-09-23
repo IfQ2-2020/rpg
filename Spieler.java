@@ -1,27 +1,33 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
 /**
  * Der Spieler unseres RPG-Projektes
  */
 public class Spieler
 {
-  private Vector2 position;
-  private int direction;
-  private int id;
-  private String name;
-  private BufferedImage texture;
-  private Item[] inventar;
-  private int[] inventarCount;
-  private int speed;
-  //private Verbesserungen;
-  //Für den Spieler wird saettigung als auf(!)gerundeter int-Wert angegeben
-  private double saettigung;
-  private int health;
-  //long auf Wunsch von Julius
-  private long money;
-  private int ausgewaehlt;
-  private World world;
+    private String name;
+    private Vector2 position;
+    private int direction;
+    private int id;
+
+    private BufferedImage texture;
+
+    //inventar ist 4*9 Felder groß, anfangs leer, inventarCount definiert die Anzahl 'stackbaren' Items
+    private Item[] inventar;
+    private int[] inventarCount;
+    private int ausgewaehlt;
+
+    /// Stats
+    private int speed;
+    //private Verbesserungen;
+    //Für den Spieler wird saettigung als auf(!)gerundeter int-Wert angegeben
+    private double saettigung;
+    private int health;
+    //long auf Wunsch von Julius
+    private long money;
+    private World world;
   
   /**
   * Erstellen des Spielers, der Name wird vom Spieler mitgegeben,
@@ -29,15 +35,19 @@ public class Spieler
   * health, hunger, money und speed werden auf Standartwert gesetzt.
   * id und position werden vom Server generiert.
   */
-  public Spieler(String pName, int pId, int pPositionX, int pPositionY, int pDirection, World pWorld)
+  public Spieler(String pName, int pId, int pPositionX, int pPositionY, int pDirection, int textureId, World pWorld)
   {
     name = pName;
     id = pId;
     position = new Vector2(pPositionX, pPositionY);
     direction = pDirection;
-    //inventar ist 4*9 Felder groß, anfangs leer, inventarCout definiert die Anzahl 'stackbaren' Items
+
+    texture = Textures.loadFile("./textures/player/" + textureId + ".png");
+
     inventar = new Item[36];
     inventarCount = new int[36];
+    ausgewaehlt = 0;
+
     //speed steht als multiplier der Fortbewegung Standartmäßig auf 1
     speed = 1;
     saettigung = 10;
@@ -45,7 +55,6 @@ public class Spieler
     money = 10;
     //ausgewaehlt definiert, welches Item derzeit ausgewählt ist und somit benutzt werden kann
     //kann eine Zahl von 0 bis 35 sein
-    ausgewaehlt = 0; 
     world = pWorld;
   }
   
@@ -59,34 +68,32 @@ public class Spieler
         direction = pDirection;
         switch (direction) {
             // Pfeil nach oben / w
-            case 0: 
-            if(!world.checkForRiver(position.add(new Vector2(0, speed))))
+            case 0:
+            if(!world.checkObstacle(position.add(new Vector2(0, -speed))))
             {
-                position=position.add(new Vector2(0, speed));
+                position=position.add(new Vector2(0, -speed));
             }
             break;
             //Pfeil nach rechts / d
             case 1: 
-            if(!world.checkForRiver(position.add(new Vector2(speed, 0))))
+            if(!world.checkObstacle(position.add(new Vector2(speed, 0))))
             {
                 position=position.add(new Vector2(speed, 0)); 
             }
             break;
             //Pfeil nach unten / s
             case 2:
-            if(!world.checkForRiver(position.subtract(new Vector2(0, speed))))
+            if(!world.checkObstacle(position.subtract(new Vector2(0, speed))))
             {
                 position=position.subtract(new Vector2(0, speed));
             }
             break;
             //Pfeil nach links / a
             case 3:
-            if(!world.checkForRiver(position.subtract(new Vector2(speed, 0))))
+            if(!world.checkObstacle(position.subtract(new Vector2(-speed, 0))))
             {
-                position=position.subtract(new Vector2(speed, 0));
+                position=position.subtract(new Vector2(-speed, 0));
             }
-            break;
-            default: 
             break;
         } // end of switch
         saettigung -= 0.1;
@@ -157,6 +164,10 @@ public class Spieler
   
   public int getId()
   {return id;}
+  
+  public BufferedImage getTexture() {
+      return texture;
+  }
   
   public Vector2 getPosition()
   {return position;}

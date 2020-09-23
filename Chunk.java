@@ -1,20 +1,21 @@
-public class Chunk{
+public class Chunk {
     private Tile[] tiles;
     private Vector2 position;// von tile unten links
     private boolean isFirstChunk;
     private World world;
     
-    public Chunk(Chunk[] pNextChunks, Vector2 pPosition, boolean pisFirstChunk, World pWorld){
+    public Chunk(Vector2 pPosition, int chunkSize){
         //NextCHunks: oben 0 links 1 rechts 2 unten 3
-        isFirstChunk = pisFirstChunk;
         position = pPosition;
-        world = pWorld;
-        tiles = createTiles(pNextChunks, isFirstChunk);
-        
-        
+        tiles = new Tile[chunkSize * chunkSize];
     }
-    
-    private Tile[] createTiles(Chunk[] pNextChunks, boolean isFirst){
+
+    public void setTileIndex(int index, Tile tile) {
+        tiles[index] = tile;
+    }
+
+    // ?? Irrelevant (wegen WorldGeneration)?
+    /*private Tile[] createTiles(Chunk[] pNextChunks, boolean isFirst){
         Tile[] ret = new Tile[16*16];
         Chunk[] nextChunks = pNextChunks;
         //First Blocktypes
@@ -41,7 +42,7 @@ public class Chunk{
                     }
                 }
             }
-        }else{
+        } else {
             for(int y = 0; y < 16; y++){
                 for(int x = 0; x < 16; x++){
                     ret[returnTilenumber(x,y)] = new Tile(0);
@@ -64,17 +65,17 @@ public class Chunk{
         
         
         return ret;
-    }
-    
-    public void drawChunk(){
-        
-    }
-    
+    }*/
+
     private int returnTilenumber(int pX, int pY){
         return 16 * pY + pX;
     }
     
     private Tile getTileFromChunk(int pI){
         return tiles[pI];
+    }
+
+    public Tile[] getTiles() {
+        return tiles;
     }
 }

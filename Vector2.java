@@ -16,7 +16,15 @@ public class Vector2
     public int getY() {
         return y;
     }
-    
+
+    public int getArea() {
+        return x * y;
+    }
+
+    public boolean equals(Vector2 b) {
+        return this.getX() == b.getX() && this.getY() == b.getY();
+    }
+
     public Vector2 add(Vector2 b) {
         return new Vector2(this.getX() + b.getX(),
             this.getY() + b.getY());
