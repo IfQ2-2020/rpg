@@ -25,5 +25,6 @@ public class GameContainer
         
         mode = newMode;
         frame.add(newMode);
+        frame.pack();
     }
 }
