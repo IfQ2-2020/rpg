@@ -11,9 +11,10 @@ public class Game extends Gamemode
 {
     private World world;
     
-    public Game()
+    public Game(GameContainer pContainer, World pWorld)
     {
-        super();
+        super(pContainer);
+        world = pWorld;
         this.addKeyListener(new KeyCheck());
     }
    

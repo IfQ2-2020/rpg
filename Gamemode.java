@@ -13,9 +13,11 @@ public class Gamemode extends JPanel implements ActionListener
 {
     private static final int FRAME_DELAY = 16;
     private Timer timer;
+    private GameContainer container;
     
-    public Gamemode()
+    public Gamemode(GameContainer pContainer)
     {
+        container = pContainer;
         init();
     }
 
