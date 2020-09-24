@@ -38,7 +38,7 @@ public class Gamemode extends JPanel implements ActionListener
     }
     
     protected void _update(Graphics g) {
-        
+        System.out.println("Update");
     }
     
     @Override

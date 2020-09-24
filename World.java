@@ -18,7 +18,7 @@ public class World
         npcs = new NPC[32];
         spieler = new Spieler[8];
         loadedChunks = new Chunk[9];
-        
+        localPlayer = new Spieler("OK",1,0,0,0,0,this);
         //Vorest
         test = new WorldGeneration(1600,1600,2);
         test.generateHeightmap();
