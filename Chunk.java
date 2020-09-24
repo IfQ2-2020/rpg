@@ -1,7 +1,6 @@
 public class Chunk {
     private Tile[] tiles;
     private Vector2 position;// von tile unten links
-    private boolean isFirstChunk;
     private World world;
     
     public Chunk(Vector2 pPosition, int chunkSize){
@@ -67,11 +66,11 @@ public class Chunk {
         return ret;
     }*/
 
-    private int returnTilenumber(int pX, int pY){
+    private int getTileIndex(int pX, int pY) {
         return 16 * pY + pX;
     }
     
-    private Tile getTileFromChunk(int pI){
+    private Tile getTileFromIndex(int pI){
         return tiles[pI];
     }
 
