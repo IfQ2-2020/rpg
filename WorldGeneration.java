@@ -1,25 +1,31 @@
 public class WorldGeneration {
     private Tile[][] generatedTiles;
     private Vector2 dimensions;
-    private int seed;
+    private int fullSeed;// laenge
 
     private static final int CHUNK_SIZE = 16;
 
     public WorldGeneration(int width, int height, int seed) {
         dimensions = new Vector2(width, height);
         generatedTiles = new Tile[width][height];
+        fullSeed = seed;
     }
 
     // Generiert eine map aus Fluss Tiles und unbestimmten Tiles, welche später ausgefüllt werden
     public void generateHeightmap(){
         int width = dimensions.getX();
         int height = dimensions.getY();
-
+        
+        // String a = ((Integer)fullSeed).toString();
+        // a = a.substring(3);
+        int seed = fullSeed;
+        
         for(int i = 0; i < height; ++i) {     // y
             for(int j = 0; j < width; ++j) {  // x
                 double x = (double)j/((double)width);
                 double y = (double)i/((double)height);
-
+                
+                
                 // Typical Perlin noise
                 double n = ImprovedNoise.noise(10 * x, 10 * y, seed);
                 // Wood like structure
@@ -68,6 +74,10 @@ public class WorldGeneration {
 
     }
 
+    public int getChunkSize(){
+        return CHUNK_SIZE;
+    }    
+    
     public Tile[][] getGeneratedTiles() {
         return generatedTiles;
     }
