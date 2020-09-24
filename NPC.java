@@ -1,80 +1,75 @@
+import java.awt.image.BufferedImage;
+
 public class NPC
 {
     private int generalID;
     private int specialID;
-    private int[] position = new int[3];
+    private Vector2 position;
+    private int facingDirection;
     private String name;
     private int speed;
-  //private Texture mTexture;
+    private BufferedImage mTexture;
 
+    public NPC(String _name, int genID, int speID, int pSpeed, int positionX, int positionY, int direction){
+        generalID = genID;
+        specialID = speID;
+        position  = new Vector2(positionX, positionY);
+        facingDirection = direction;
+        name = _name;
+        speed = pSpeed;
+    }
+  
+    public void setPosition(Vector2 sPosition){
+        position = sPosition;
+    }
 
-  public NPC(int genID, int speID, int pSpeed, int positionX, int positionY, int direction, String _name){
-         generalID = genID;
-         specialID = speID;
-         position[0] = positionX;
-         position[1] = positionY;
-         position[2] = direction;
-         name = _name;
-         speed = pSpeed;
-  }
-  public void setPosition(int[] sPosition){
-    position = sPosition;
-  }
-
-    public int[] getPosition(){
+    public Vector2 getPosition(){
         return position;
     }
-    public int getPositionX(){
-        return position[0];
-    }
-    public void setPositionX(int pPositionX){
-        position[0] = pPositionX;
-    }
-    public int getPositionY(){
-        return position[1];
-    }
-    public void setPositionY(int pPositionY){
-        position[1] = pPositionY;
-    }
+    
     public int getDirection(){
-        return position[2];
+        return facingDirection;
     }
+    
     public void setDirection(int pDirection){
-        position[2] = pDirection;
+        facingDirection = pDirection;
     }
+    
     public String getName(){
         return name;
     }
+    
+    public BufferedImage getTexture(){
+        return mTexture;
+    }
+    
     public int getGenID(){
         return generalID;
     }
+    
     public int getSpeID(){
         return specialID;
     }
+    
     public void laufen(int pDirection)
     {
         if(pDirection >= 0 && pDirection<=4)
         {
-        position[2] = pDirection;
-            switch (position[2]) {
-            case 0: 
-            position[1] += speed;    
-            break;
-            case 1: 
-            position[0] += speed; 
-            break;
-            case 2:
-            position[1] -= speed;
-            break;
-            case 3:
-            position[0] -= speed;
-            break;
-            default: 
-            break;
+            facingDirection = pDirection;
+            switch (facingDirection) {
+                case 0:
+                    position = position.subtract(new Vector2(0, speed));
+                    break;
+                case 1: 
+                    position = position.add(new Vector2(speed, 0));
+                    break;
+                case 2:
+                    position = position.add(new Vector2(0, speed));
+                    break;
+                case 3:
+                    position = position.subtract(new Vector2(speed, 0));
+                    break;
            }
         }
     }
-    /*public int getTexture(){
-    /*    return Texture.getID();
-    }*/
 }
