@@ -1,16 +1,17 @@
 public class WorldGeneration {
     private Tile[][] generatedTiles;
     private Vector2 dimensions;
+    private int seed;
 
     private static final int CHUNK_SIZE = 16;
 
-    public WorldGeneration(int width, int height) {
+    public WorldGeneration(int width, int height, int seed) {
         dimensions = new Vector2(width, height);
         generatedTiles = new Tile[width][height];
     }
 
     // Generiert eine map aus Fluss Tiles und unbestimmten Tiles, welche später ausgefüllt werden
-    private void generateHeightmap(){
+    public void generateHeightmap(){
         int width = dimensions.getX();
         int height = dimensions.getY();
 
@@ -20,18 +21,19 @@ public class WorldGeneration {
                 double y = (double)i/((double)height);
 
                 // Typical Perlin noise
-                double n = ImprovedNoise.noise(10 * x, 10 * y, 1);
+                double n = ImprovedNoise.noise(10 * x, 10 * y, seed);
                 // Wood like structure
                 n = n - Math.floor(n);
 
                 if(n > 0.3 + 0.4 * distance_squared(i,j)) {
                     // Tile 0 indiziert im moment nichts und 1 fluss
                     generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
+                    //System.out.print(0);
                 } else {
-                    double a = ImprovedNoise.noise(10 * (x), 10 * (y-1/(double)width), 1);
-                    double b = ImprovedNoise.noise(10 * (x-1/(double)width), 10 * (y), 1);
-                    double c = ImprovedNoise.noise(10 * (x+1/(double)width), 10 * (y), 1);
-                    double d = ImprovedNoise.noise(10 * (x), 10 * (y+1/(double)width), 1);
+                    double a = ImprovedNoise.noise(10 * (x), 10 * (y-1/(double)width), seed);
+                    double b = ImprovedNoise.noise(10 * (x-1/(double)width), 10 * (y), seed);
+                    double c = ImprovedNoise.noise(10 * (x+1/(double)width), 10 * (y), seed);
+                    double d = ImprovedNoise.noise(10 * (x), 10 * (y+1/(double)width), seed);
                     a = a - Math.floor(a);
                     b = b - Math.floor(b);
                     c = c - Math.floor(c);
@@ -43,11 +45,14 @@ public class WorldGeneration {
                             (d > 0.3 + 0.4 * distance_squared(i,j) && y != height - 1))
                     {
                         generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
+                        //System.out.print(1);
                     } else {
                         generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
+                        //System.out.print(0);
                     }
                 }
             }
+            //System.out.println();
         }
     }
 
