@@ -1,10 +1,3 @@
-
-/**
- * Beschreiben Sie hier die Klasse Mob.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
 public class Mob extends NPC
 {
     private int agressionlv;
@@ -17,10 +10,12 @@ public class Mob extends NPC
     /**
      * Konstruktor für Objekte der Klasse Mob
      */
-    public Mob(int genID, int speID,int pSpeed , int[] position, int lootId5, int lootId4, int lootId3, int lootId2, int lootId1, String name, int pAgressionlv, int pHealth, int pStrength, int pLootingmass)
+    public Mob(int id, String pName, int x, int y, int direction, int pSpeed, 
+        int lootId5, int lootId4, int lootId3, int lootId2, int lootId1, 
+        int pAggressionlv, int pHealth, int pStrength, int pLootingmass)
     {
-        super(pSpeed, genID, speID, position[0], position[1], position[2], name);
-        agressionlv = pAgressionlv;
+        super(id, pName, x, y, direction, pSpeed);
+        agressionlv = pAggressionlv;
         health = pHealth;
         strength = pStrength;
         lootingmass = pLootingmass;

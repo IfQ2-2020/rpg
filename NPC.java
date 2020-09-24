@@ -2,20 +2,18 @@ import java.awt.image.BufferedImage;
 
 public class NPC
 {
-    private int generalID;
-    private int specialID;
+    private int id;
+    private String name;
     private Vector2 position;
     private int facingDirection;
-    private String name;
     private int speed;
     private BufferedImage mTexture;
 
-    public NPC(String _name, int genID, int speID, int pSpeed, int positionX, int positionY, int direction){
-        generalID = genID;
-        specialID = speID;
+    public NPC(int pId, String pName, int positionX, int positionY, int direction, int pSpeed){
+        id = pId;
+        name = pName;
         position  = new Vector2(positionX, positionY);
         facingDirection = direction;
-        name = _name;
         speed = pSpeed;
     }
   
@@ -43,12 +41,8 @@ public class NPC
         return mTexture;
     }
     
-    public int getGenID(){
-        return generalID;
-    }
-    
-    public int getSpeID(){
-        return specialID;
+    public int getID(){
+        return id;
     }
     
     public void laufen(int pDirection)
