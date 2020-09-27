@@ -22,6 +22,7 @@ public class Game extends Gamemode
     
     @Override
     public void _update(Graphics g) {
+        System.out.print(0);
         // TODO: draw tiles around player
         Spieler p = world.getLocalPlayer();
         Vector2 pos = p.getPosition();

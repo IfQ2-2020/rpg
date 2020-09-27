@@ -10,7 +10,7 @@ public class World
      */
     private Chunk[] loadedChunks;
     private int width = 1600, height = 1600;
-    private Spieler localPlayer;
+    public Spieler localPlayer;
     
     WorldGeneration test;
     public World()
@@ -18,7 +18,7 @@ public class World
         npcs = new NPC[32];
         spieler = new Spieler[8];
         loadedChunks = new Chunk[9];
-        localPlayer = new Spieler("OK",1,1,1,0,0,this);
+        localPlayer = new Spieler("OK",1,0,0,0,0,this);
         //Vorest
         test = new WorldGeneration(1600,1600,2);
         test.generateHeightmap();
@@ -38,8 +38,14 @@ public class World
         //....
         
         //vorerst
-        int x = (int)Math.floor(test.getDimensions().getX() / (pos.getX() * test.getChunkSize()));
-        int y = (int)Math.floor(test.getDimensions().getY() / (pos.getY() * test.getChunkSize()));
+        double _x = pos.getX()/test.getChunkSize();
+        double _y = pos.getY()/test.getChunkSize();
+        int x = (int)Math.floor(_x);
+        int y = (int)Math.floor(_y);        
+        //System.out.println(x);
+        x += test.getDimensions().getX()* 0.5 / test.getChunkSize();
+        y += test.getDimensions().getY()* 0.5 / test.getChunkSize();
+        
         Chunk[][] a = test.groupToChunks();
         for(int i = 0; i < loadedChunks.length;i++){
             switch(i){
