@@ -26,6 +26,7 @@ public class Gamemode extends JPanel implements ActionListener
         this.setFocusable(true);
         timer = new Timer(FRAME_DELAY, this);
         timer.start();
+        System.out.print(0);
     }
     
     @Override
