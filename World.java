@@ -9,7 +9,7 @@ public class World
     6  7  8
      */
     private Chunk[] loadedChunks;
-    private int width = 1600, height = 1600;
+    private Vector2 dimensions = new Vector2(1600,1600);
     public Spieler localPlayer;
     
     WorldGeneration test;
@@ -25,6 +25,10 @@ public class World
         loadNextChunks();
     }
 
+    public Vector2 getDimensions(){
+        return dimensions;
+    }
+    
     public Spieler getLocalPlayer() {
         return localPlayer;
     }

@@ -22,7 +22,7 @@ public class Game extends Gamemode
     
     @Override
     public void _update(Graphics g) {
-        System.out.print("update in game");
+        //System.out.print("update in game");
         // TODO: draw tiles around player
         Spieler p = world.getLocalPlayer();
         Vector2 pos = p.getPosition();
@@ -32,6 +32,8 @@ public class Game extends Gamemode
             Tile[] tiles = c.getTiles();
             for (Tile tile : tiles) {
                 Vector2 relative = pos.subtract(tile.getPosition());
+                relative = relative.add(world.getDimensions());
+                System.out.println(relative.getX()+" , " + relative.getY());
                 g.drawImage(tile.getTexture(),
                     relative.getX() + relDrawPos,
                     relative.getY() + relDrawPos,

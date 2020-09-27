@@ -20,6 +20,7 @@ public class WorldGeneration {
         // a = a.substring(3);
         int seed = fullSeed;
         
+        //River
         for(int i = 0; i < height; ++i) {     // y
             for(int j = 0; j < width; ++j) {  // x
                 double x = (double)j/((double)width);
@@ -60,6 +61,48 @@ public class WorldGeneration {
             }
             //System.out.println();
         }
+        
+        //Paths
+        // for(int i = 0; i < height; ++i) {     // y
+            // for(int j = 0; j < width; ++j) {  // x
+                // double x = (double)j/((double)width);
+                // double y = (double)i/((double)height);
+                
+                
+                // // Typical Perlin noise
+                // double n = ImprovedNoise.noise(10 * x, 10 * y, seed);
+                // // Wood like structure
+                // n = n - Math.floor(n);
+
+                // if(n > 0.3 + 0.4 * distance_squared(i,j)) {
+                    // // Tile 0 indiziert im moment nichts und 1 fluss
+                    // generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
+                    // //System.out.print(0);
+                // } else {
+                    // double a = ImprovedNoise.noise(10 * (x), 10 * (y-1/(double)width), seed);
+                    // double b = ImprovedNoise.noise(10 * (x-1/(double)width), 10 * (y), seed);
+                    // double c = ImprovedNoise.noise(10 * (x+1/(double)width), 10 * (y), seed);
+                    // double d = ImprovedNoise.noise(10 * (x), 10 * (y+1/(double)width), seed);
+                    // a = a - Math.floor(a);
+                    // b = b - Math.floor(b);
+                    // c = c - Math.floor(c);
+                    // d = d - Math.floor(d);
+
+                    // if((a > 0.3 + 0.4 * distance_squared(i,j) && y != 0 )||
+                            // (b > 0.3 + 0.4 * distance_squared(i,j) && x != 0) ||
+                            // (c > 0.3 + 0.4 * distance_squared(i,j) && x != width-1 )||
+                            // (d > 0.3 + 0.4 * distance_squared(i,j) && y != height - 1))
+                    // {
+                        // generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
+                        // //System.out.print(1);
+                    // } else {
+                        // generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
+                        // //System.out.print(0);
+                    // }
+                // }
+            // }
+            // //System.out.println();
+        // }
     }
 
     private float distance_squared(int x, int y) {
