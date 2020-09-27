@@ -2,6 +2,13 @@ import java.awt.image.BufferedImage;
 
 public class Tile
 {
+    // ID:
+    // 0:error
+    // 1:fluss
+    // 2:grass
+    // 3:path/weg
+    // 4:brücke
+    
     private int ID;
     private Vector2 position;
     private boolean ueberwindbar = true;
@@ -18,6 +25,10 @@ public class Tile
     
     public int getID(){
         return ID;
+    }
+    
+    public void setID(int pID){
+        ID = pID;
     }
     
     public BufferedImage getTexture() {

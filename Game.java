@@ -32,8 +32,9 @@ public class Game extends Gamemode
             Tile[] tiles = c.getTiles();
             for (Tile tile : tiles) {
                 Vector2 relative = pos.subtract(tile.getPosition());
-                relative = relative.add(world.getDimensions());
-                System.out.println(relative.getX()+" , " + relative.getY());
+                relative = relative.add(new Vector2(world.getDimensions().getX()/2,
+                                        world.getDimensions().getY()/2));
+                //System.out.println(relative.getX()+" , " + relative.getY());
                 g.drawImage(tile.getTexture(),
                     relative.getX() + relDrawPos,
                     relative.getY() + relDrawPos,
