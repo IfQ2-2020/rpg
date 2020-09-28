@@ -1,3 +1,4 @@
+
 public class WorldGeneration {
     private Tile[][] generatedTiles;
     private Vector2 dimensions;
@@ -31,10 +32,12 @@ public class WorldGeneration {
                 double n = ImprovedNoise.noise(10 * x, 10 * y, seed);
                 // Wood like structure
                 n = n - Math.floor(n);
-
+                
+                // Tile 0 indiziert im moment nichts und 1 fluss
                 if(n > 0.3 + 0.4 * distance_squared(i,j)) {
-                    // Tile 0 indiziert im moment nichts und 1 fluss
-                    generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
+                    if(generatedTiles[j][i] == null){
+                        generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
+                    }
                     //System.out.print(0);
                 } else {
                     double a = ImprovedNoise.noise(10 * (x), 10 * (y-1/(double)width), seed);
@@ -51,14 +54,17 @@ public class WorldGeneration {
                             (c > 0.3 + 0.4 * distance_squared(i,j) && x != width-1 )||
                             (d > 0.3 + 0.4 * distance_squared(i,j) && y != height - 1))
                     {
-                        generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
                         //System.out.print(1);
+                        breiterRiver(j,i);
+                        //generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
                     } else {
-                        generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
+                        if(generatedTiles[j][i] == null){
+                            generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
+                        }
                         //System.out.print(0);
                     }
                 }
-            }
+            } 
             //System.out.println();
         }
         
@@ -69,13 +75,13 @@ public class WorldGeneration {
                 double y = (double)i/((double)height);
                 
                 
-                // Typical Perlin noise
+                //Typical Perlin noise
                 double n = ImprovedNoise.noise(10 * x, 10 * y, seed * 10);
-                // Wood like structure
+                //Wood like structure
                 n = n - Math.floor(n);
 
                 if(n > 0.3 + 0.4 * distance_squared(i,j)) {
-                    // Tile 2 indiziert im moment grass und 3 path , 4 brücke
+                    //Tile 2 indiziert im moment grass und 3 path , 4 brücke
                     if(generatedTiles[j][i].getID() == 0){
                         //grass
                         generatedTiles[j][i].setID(2);
@@ -155,5 +161,37 @@ public class WorldGeneration {
 
     public Vector2 getDimensions() {
         return dimensions;
+    }
+    
+    private void breiterRiver(int j, int i){
+        int width = dimensions.getX();
+        int height = dimensions.getY();
+        
+        int j1 = j-1;
+        int j2 = j+1;
+        if(j == 0){
+            j1 = 0;
+        } else if(j == width-1){
+            j2 = j;
+        }  
+        
+        int i1 = i-1;
+        int i2 = i+1;       
+        if(i == 0){
+            i1 = 0;
+        } else if(i == height-1){
+            i2 -= 1;
+        }  
+        
+        generatedTiles[j1][i1] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j1][i] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j1][i2] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j][i1] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j][i2] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j2][i1] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j2][i2] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j2][i] = Tiles.createTileAt(1, j, i);
+        
     }
 }
