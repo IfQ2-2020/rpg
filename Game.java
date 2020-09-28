@@ -36,8 +36,8 @@ public class Game extends Gamemode
                                         world.getDimensions().getY()/2));
                 //System.out.println(relative.getX()+" , " + relative.getY());
                 g.drawImage(tile.getTexture(),
-                    relative.getX() + relDrawPos,
-                    relative.getY() + relDrawPos,
+                    relative.getX()*32 + relDrawPos,
+                    relative.getY()*32 + relDrawPos,
                     32, 32, null);
             }
         }
