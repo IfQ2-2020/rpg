@@ -52,13 +52,43 @@ public class Spieler
         ausgewaehlt = 0;
         world = pWorld;
     }
-  
+    
+    public void keyPressed (int pKeyCode)
+    {
+        switch (pKeyCode) {
+            case 37:
+            laufen(3);
+            break;
+            case 38:
+            laufen(0);
+            break;
+            case 39:
+            laufen(1);
+            break;
+            case 40:
+            laufen(2);
+            break;
+            case 65:
+            laufen(3);
+            break;
+            case 68:
+            laufen(1);
+            break;
+            case 83:
+            laufen(2);
+            break;
+            case 87:
+            laufen(0);
+            break;
+        }
+    }
+    
     /**
     * Spieler wird in Richtung pDirection um speed fortbewegt
     */
     public void laufen(int pDirection)
     {
-        if(pDirection >= 0 && pDirection<=4){
+        if(pDirection <= 4 && pDirection >= 0){
             direction = pDirection;
             switch (direction) {
                 // Pfeil nach oben / w
