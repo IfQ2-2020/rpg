@@ -56,29 +56,41 @@ public class Spieler
     public void keyPressed (int pKeyCode)
     {
         switch (pKeyCode) {
-            case 37:
+            case 37: //Left
             laufen(3);
             break;
-            case 38:
+            case 38: //Up
             laufen(0);
             break;
-            case 39:
+            case 39: //Right
             laufen(1);
             break;
-            case 40:
+            case 40: //Down
             laufen(2);
             break;
-            case 65:
+            case 45: //-
+            openInventory();
+            break;
+            case 65: //A
             laufen(3);
             break;
-            case 68:
+            case 68: //D
             laufen(1);
             break;
-            case 83:
+            case 69: //E
+            openInventory();
+            break;
+            case 81: //Q
+            handeln();
+            break;
+            case 83: //S
             laufen(2);
             break;
-            case 87:
+            case 87: //W
             laufen(0);
+            break;
+            case 97: //NumPad1
+            handeln();
             break;
         }
     }
@@ -159,7 +171,7 @@ public class Spieler
     }
   
     public void handeln(){
-        //ausgelöst durch rechte maustaste
+        //ausgelöst NumPad1/q
         //if(world.npc.getClass() == Haendler)
     }
     
