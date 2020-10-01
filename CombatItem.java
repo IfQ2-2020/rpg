@@ -8,10 +8,10 @@
 public class CombatItem extends Item
 {
     private int durability;
-    private int damage;
+    private double damage;
     private int range;
 
-    public CombatItem(int itemID, String pName, String pDesc, int p_durability, int p_damage, int p_range)
+    public CombatItem(int itemID, String pName, String pDesc, int p_durability, double p_damage, int p_range)
     {
         super(itemID, pName, pDesc);
         if(durability >= 0)
@@ -33,7 +33,7 @@ public class CombatItem extends Item
         return durability;
     }
 
-    public int getDamage()
+    public double getDamage()
     {
         return damage;
     }
