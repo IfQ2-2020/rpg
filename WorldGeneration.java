@@ -55,7 +55,8 @@ public class WorldGeneration {
                             (d > 0.3 + 0.4 * distance_squared(i,j) && y != height - 1))
                     {
                         //System.out.print(1);
-                        breiterRiver(j,i);
+                        breiterRiver(j,i
+                        );
                         //generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
                     } else {
                         if(generatedTiles[j][i] == null){
@@ -183,15 +184,15 @@ public class WorldGeneration {
             i2 -= 1;
         }  
         
-        generatedTiles[j1][i1] = Tiles.createTileAt(1, j, i);
-        generatedTiles[j1][i] = Tiles.createTileAt(1, j, i);
-        generatedTiles[j1][i2] = Tiles.createTileAt(1, j, i);
-        generatedTiles[j][i1] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j1][i1] = Tiles.createTileAt(1, j1, i1);
+        generatedTiles[j1][i] = Tiles.createTileAt(1, j1, i);
+        generatedTiles[j1][i2] = Tiles.createTileAt(1, j1, i2);
+        generatedTiles[j][i1] = Tiles.createTileAt(1, j, i1);
         generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
-        generatedTiles[j][i2] = Tiles.createTileAt(1, j, i);
-        generatedTiles[j2][i1] = Tiles.createTileAt(1, j, i);
-        generatedTiles[j2][i2] = Tiles.createTileAt(1, j, i);
-        generatedTiles[j2][i] = Tiles.createTileAt(1, j, i);
+        generatedTiles[j][i2] = Tiles.createTileAt(1, j, i2);
+        generatedTiles[j2][i1] = Tiles.createTileAt(1, j2, i1);
+        generatedTiles[j2][i2] = Tiles.createTileAt(1, j2, i2);
+        generatedTiles[j2][i] = Tiles.createTileAt(1, j2, i);
         
     }
 }

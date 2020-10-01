@@ -9,7 +9,7 @@ public class World
     6  7  8
      */
     private Chunk[] loadedChunks;
-    private Vector2 dimensions = new Vector2(1600,1600);
+    private Vector2 dimensions = new Vector2(800,800);
     public Spieler localPlayer;
     
     WorldGeneration test;
@@ -20,7 +20,7 @@ public class World
         loadedChunks = new Chunk[9];
         localPlayer = new Spieler("OK",1,0,0,0,1,this);
         //Vorest
-        test = new WorldGeneration(1600,1600,2);
+        test = new WorldGeneration(dimensions.getX(),dimensions.getY(),251);
         test.generateHeightmap();
         loadNextChunks();
     }
