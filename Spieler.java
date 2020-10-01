@@ -171,8 +171,8 @@ public class Spieler
     }
   
     public void handeln(){
-        //ausgelöst NumPad1/q
-        //if(world.npc.getClass() == Haendler)
+        //ausgelöst NumPad1/q oder Maus?
+        
     }
     
     public void openInventory(){
