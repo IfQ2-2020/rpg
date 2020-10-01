@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Game extends Gamemode
+public class Game extends Gamemode implements KeyListener
 {
     private World world;
     
@@ -15,17 +15,19 @@ public class Game extends Gamemode
     {
         super(pContainer);
         world = pWorld;
-        this.addKeyListener(new KeyCheck());
+        this.setFocusable(true);
+        this.addKeyListener(this);
     }
    
     private static final int relDrawPos = 768/2 - 32;
     
     @Override
     public void _update(Graphics g) {
-        //System.out.print("update in game");
-        // TODO: draw tiles around player
         Spieler p = world.getLocalPlayer();
         Vector2 pos = p.getPosition();
+      
+        //System.out.print("update in game");
+        // TODO: draw tiles around player
         
         Chunk[] chunks = world.getLoadedChunks();
         for (Chunk c : chunks) {
@@ -51,5 +53,17 @@ public class Game extends Gamemode
 
         g.setColor(Color.BLACK);
         g.drawString("FPS: " + 1000/this.getTimerDelay(), 5, 10);
+    }
+    
+    public void keyPressed(KeyEvent e) {
+            System.out.println("Key Code: " + e.getKeyCode());
+            
+        }
+        
+        public void keyReleased(KeyEvent e) {
+            
+        }
+        
+    public void keyTyped(KeyEvent e) {
     }
 }
