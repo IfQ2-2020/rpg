@@ -57,12 +57,12 @@ public class Game extends Gamemode implements KeyListener
     
     public void keyPressed(KeyEvent e) {
             System.out.println("Key Code: " + e.getKeyCode());
-            
+            world.getLocalPlayer().keyPressed(e.getKeyCode());
         }
         
-        public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
             
-        }
+    }
         
     public void keyTyped(KeyEvent e) {
     }
