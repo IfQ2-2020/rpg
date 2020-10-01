@@ -7,7 +7,7 @@ public class ChunkFile
     // Dateinamen Spezifikation:
     // X-i-j.rcf // RPG Chunk File
     // Chunk Base Position = welt position / chunk size
-    public static Chunk loadChunk(int i, int j) throws IOException {
+    public static Chunk loadChunks(int i, int j) throws IOException {
         FileInputStream in = null;
         
         try {

@@ -21,7 +21,11 @@ public class World
         localPlayer = new Spieler("OK",1,0,0,0,1,this);
         //Vorest
         test = new WorldGeneration(dimensions.getX(),dimensions.getY(),251);
-        test.generateHeightmap();
+        try {
+            test.generateHeightmap();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         loadNextChunks();
     }
 

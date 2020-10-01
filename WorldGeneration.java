@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 public class WorldGeneration {
     private Tile[][] generatedTiles;
@@ -13,7 +14,7 @@ public class WorldGeneration {
     }
 
     // Generiert eine map aus Fluss Tiles und unbestimmten Tiles, welche später ausgefüllt werden
-    public void generateHeightmap(){
+    public void generateHeightmap() throws IOException {
         int width = dimensions.getX();
         int height = dimensions.getY();
         
@@ -65,23 +66,15 @@ public class WorldGeneration {
                         //System.out.print(0);
                     }
                 }
-            } 
-            //System.out.println();
-        }
-        
-        //Paths
-        for(int i = 0; i < height; ++i) {     // y
-            for(int j = 0; j < width; ++j) {  // x
-                double x = (double)j/((double)width);
-                double y = (double)i/((double)height);
-                
+               
+                //Paths
                 
                 //Typical Perlin noise
-                double n = ImprovedNoise.noise(10 * x, 10 * y, seed * 10);
+                double z = ImprovedNoise.noise(10 * x, 10 * y, seed * 10);
                 //Wood like structure
-                n = n - Math.floor(n);
+                z = z - Math.floor(z);
 
-                if(n > 0.3 + 0.4 * distance_squared(i,j)) {
+                if(z > 0.3 + 0.4 * distance_squared(i,j)) {
                     //Tile 2 indiziert im moment grass und 3 path , 4 brücke
                     if(generatedTiles[j][i].getID() == 0){
                         //grass
@@ -115,9 +108,27 @@ public class WorldGeneration {
                             generatedTiles[j][i].setID(2);
                         }
                     }
+                
+                    //System.out.println();
                 }
-            }
+            } 
             //System.out.println();
+            if(i != 0 && i % CHUNK_SIZE == 0) {
+                Chunk[] save = new Chunk[width / CHUNK_SIZE];
+                for (int s = 0; s < save.length; s++) {
+                    save[s] = new Chunk(new Vector2(s * CHUNK_SIZE, i % CHUNK_SIZE), CHUNK_SIZE);
+                }
+                
+                for (int a = 0; a < CHUNK_SIZE; a++) {
+                    for (int b = 0; b < width; b++) {
+                        save[b / CHUNK_SIZE].setTileIndex(a * CHUNK_SIZE + b % CHUNK_SIZE, generatedTiles[b][i-a]);
+                        generatedTiles[b][i-a] = null;
+                    }
+                }
+                
+                for (Chunk c : save)
+                    ChunkFile.saveChunk(c);
+            }
         }
     }
 
