@@ -1,12 +1,16 @@
 public class Chunk {
     private Tile[] tiles;
-    private Vector2 position;// von tile unten links
+    private Vector2 position;// von tile oben links
     public Chunk(Vector2 pPosition, int chunkSize){
         //NextCHunks: oben 0 links 1 rechts 2 unten 3
         position = pPosition;
         tiles = new Tile[chunkSize * chunkSize];
     }
 
+    public Vector2 getPosition() {
+        return position;
+    }
+    
     public void setTileIndex(int index, Tile tile) {
         tiles[index] = tile;
     }
