@@ -9,12 +9,14 @@ import javax.swing.Timer;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JFrame;
+
 public class Gamemode extends JPanel implements ActionListener
 {
     private static final int FRAME_DELAY = 16;
     private Timer timer;
     private GameContainer container;
-    
+       
     public Gamemode(GameContainer pContainer)
     {
         container = pContainer;
@@ -48,5 +50,9 @@ public class Gamemode extends JPanel implements ActionListener
     
     public int getTimerDelay() {
         return timer.getDelay();
+    }
+    
+    public void setFrame(JFrame x){
+    
     }
 }

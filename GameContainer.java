@@ -26,5 +26,7 @@ public class GameContainer
         mode = newMode;
         frame.add(newMode);
         frame.pack();
+        if(mode.getClass() == Game.class)
+            mode.setFrame(frame);
     }
 }

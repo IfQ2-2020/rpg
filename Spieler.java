@@ -104,28 +104,29 @@ public class Spieler
             direction = pDirection;
             switch (direction) {
                 // Pfeil nach oben / w
-                case 0:
+                case 2:
                 if(!world.checkObstacle(position.add(new Vector2(0, -speed))))
                 {
+                    //System.out.println(0);  
                     position=position.subtract(new Vector2(0, speed));
                 }
                 break;
                 //Pfeil nach rechts / d
-                case 1: 
+                case 3: 
                 if(!world.checkObstacle(position.add(new Vector2(speed, 0))))
                 {
                     position=position.add(new Vector2(speed, 0)); 
                 }
                 break;
                 //Pfeil nach unten / s
-                case 2:
+                case 0:
                 if(!world.checkObstacle(position.subtract(new Vector2(0, speed))))
                 {
                     position=position.add(new Vector2(0, speed));
                 }
                 break;
                 //Pfeil nach links / a
-                case 3:
+                case 1:
                 if(!world.checkObstacle(position.subtract(new Vector2(-speed, 0))))
                 {
                     position=position.subtract(new Vector2(speed, 0));
@@ -134,7 +135,9 @@ public class Spieler
             } // end of switch
             saettigung -= 0.1;
             restoreHealth();
+          
         }
+        //System.out.println(position.getX()+ ","+  position.getY());  
     }
   
     //aktiviert durch linke Maustaste

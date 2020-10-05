@@ -63,8 +63,7 @@ public class WorldGeneration {
                             (d > 0.3 + 0.4 * distance_squared(i,j) && y != height - 1))
                     {
                         //System.out.print(1);
-                        breiterRiver(j,i
-                        );
+                        breiterRiver(j,i);
                         //generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
                     } else {
                         if(generatedTiles[j][i] == null){

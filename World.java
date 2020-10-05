@@ -2,6 +2,7 @@ public class World
 {
     private NPC[] npcs;
     private Spieler[] spieler;
+    private int seed;
 
     /* Die vom localPlayer geladenen Chunks
     0  1  2
@@ -13,14 +14,15 @@ public class World
     public Spieler localPlayer;
     
     WorldGeneration test;
-    public World()
+    public World(int pSeed)
     {
         npcs = new NPC[32];
         spieler = new Spieler[8];
         loadedChunks = new Chunk[9];
         localPlayer = new Spieler("OK",1,400,400,0,1,this);
+        seed = pSeed;
         //Vorest
-        test = new WorldGeneration(dimensions.getX(),dimensions.getY(),251);
+        test = new WorldGeneration(dimensions.getX(),dimensions.getY(),seed);
         try {
             test.generateHeightmap();
         } catch (Exception e) {
@@ -92,14 +94,14 @@ public class World
     }
 
     public boolean checkObstacle(Vector2 position) {
-        for (Chunk c : loadedChunks) {
-            Tile[] tiles = c.getTiles();
-            for (Tile tile : tiles) {
-                if (tile.getPosition().equals(position)) {
-                    return tile.getUeberwindbar();
-                }
-            }
-        }
+        // for (Chunk c : loadedChunks) {
+            // Tile[] tiles = c.getTiles();
+            // for (Tile tile : tiles) {
+                // if (tile.getPosition().equals(position)) {
+                    // return tile.getUeberwindbar();
+                // }
+            // }
+        // }
 
         return false;
     }
