@@ -18,7 +18,7 @@ public class World
         npcs = new NPC[32];
         spieler = new Spieler[8];
         loadedChunks = new Chunk[9];
-        localPlayer = new Spieler("OK",1,0,0,0,1,this);
+        localPlayer = new Spieler("OK",1,400,400,0,1,this);
         //Vorest
         test = new WorldGeneration(dimensions.getX(),dimensions.getY(),251);
         try {
@@ -44,9 +44,21 @@ public class World
     public void loadNextChunks() {
         Vector2 pos = localPlayer.getPosition();
         //....
+        // Um chunk size teilen um die rel chunk pos zu bekommen
+        Vector2 chunkPos = pos.divBy(16);
         
+        Chunk[] newChunks = new Chunk[9];
+        
+        int i = 0;
+        for (int y = chunkPos.getY() - 1; y <= chunkPos.getY() + 1; y++) {
+            for (int x = chunkPos.getX() - 1; x <= chunkPos.getX() + 1; x++) {
+                newChunks[i++] = ChunkFile.loadChunk(x, y);
+            }
+        }
+        
+        loadedChunks = newChunks;
         //vorerst
-        double _x = pos.getX()/test.getChunkSize();
+        /*double _x = pos.getX()/test.getChunkSize();
         double _y = pos.getY()/test.getChunkSize();
         int x = (int)Math.floor(_x);
         int y = (int)Math.floor(_y);        
@@ -76,7 +88,7 @@ public class World
                 case 8: loadedChunks[i] = a[x+1][y+1]; 
                         break;              
             };
-        }                
+        }*/                
     }
 
     public boolean checkObstacle(Vector2 position) {

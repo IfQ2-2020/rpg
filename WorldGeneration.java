@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class WorldGeneration {
     private Tile[][] generatedTiles;
@@ -15,6 +18,10 @@ public class WorldGeneration {
 
     // Generiert eine map aus Fluss Tiles und unbestimmten Tiles, welche später ausgefüllt werden
     public void generateHeightmap() throws IOException {
+        Path path = Paths.get("./save");
+        if (Files.notExists(path))
+            Files.createDirectory(path);
+        
         int width = dimensions.getX();
         int height = dimensions.getY();
         
@@ -113,10 +120,10 @@ public class WorldGeneration {
                 }
             } 
             //System.out.println();
-            if(i != 0 && i % CHUNK_SIZE == 0) {
+            if(i != 0 && (i + 1) % CHUNK_SIZE == 0) {
                 Chunk[] save = new Chunk[width / CHUNK_SIZE];
                 for (int s = 0; s < save.length; s++) {
-                    save[s] = new Chunk(new Vector2(s * CHUNK_SIZE, i % CHUNK_SIZE), CHUNK_SIZE);
+                    save[s] = new Chunk(new Vector2(s * CHUNK_SIZE, i / CHUNK_SIZE), CHUNK_SIZE);
                 }
                 
                 for (int a = 0; a < CHUNK_SIZE; a++) {
@@ -126,8 +133,8 @@ public class WorldGeneration {
                     }
                 }
                 
-                for (Chunk c : save)
-                    ChunkFile.saveChunk(c);
+                System.out.println("Saved Chunk " + save[0].getPosition().getY());
+                ChunkFile.saveChunks(save);
             }
         }
     }

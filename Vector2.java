@@ -34,4 +34,9 @@ public class Vector2
         return new Vector2(this.getX() - b.getX(),
             this.getY() - b.getY());
     }
+    
+    public Vector2 divBy(int divisor) {
+        return new Vector2(this.getX() / divisor,
+            this.getY() / divisor);
+    }
 }
