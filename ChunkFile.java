@@ -46,14 +46,17 @@ public class ChunkFile
         try {
             int y = chunks[0].getPosition().getY();
             out = new FileOutputStream("./save/Y-" + y + ".rcf");
+            byte[] toSave = new byte[16*16*chunks.length];
             
-            for (Chunk chunk : chunks) {
-                Tile[] tiles = chunk.getTiles();
+            int index = 0;
+            for (int i = 0; i < chunks.length; i++) {
+                Tile[] tiles = chunks[i].getTiles();
             
-                for (Tile t : tiles) {
-                    out.write(t.getID());
+                for (int j = 0; j < tiles.length; j++) {
+                    toSave[index++] = (byte)tiles[j].getID();
                 }
             }
+            out.write(toSave);
         } finally {
             if (out != null)
                 out.close();
