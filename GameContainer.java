@@ -26,6 +26,7 @@ public class GameContainer
         mode = newMode;
         frame.add(newMode);
         frame.pack();
+        frame.setSize(768, 768);
         if(mode.getClass() == Game.class)
             mode.setFrame(frame);
     }
