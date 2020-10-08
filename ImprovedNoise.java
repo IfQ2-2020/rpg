@@ -1,6 +1,6 @@
 public final class ImprovedNoise {
    static public double noise(double x, double y, int seed) {
-      double z = 10.0 * seed;
+      double z = 10.0*seed;
       int X = (int)Math.floor(x) & 255,                  // FIND UNIT CUBE THAT
           Y = (int)Math.floor(y) & 255,                  // CONTAINS POINT.
           Z = (int)Math.floor(z) & 255;

@@ -53,44 +53,14 @@ public class World
         
         int i = 0;
         for (int y = chunkPos.getY() - 1; y <= chunkPos.getY() + 1; y++) {
-            for (int x = chunkPos.getX() - 1; x <= chunkPos.getX() + 1; x++) {
-                newChunks[i++] = ChunkFile.loadChunk(x, y);
+            for (int x = chunkPos.getX() -1; x <= chunkPos.getX() + 1; x++) {
+                newChunks[i] = ChunkFile.loadChunk(x, y);
+                i++;
             }
         }
         
         loadedChunks = newChunks;
-        //vorerst
-        /*double _x = pos.getX()/test.getChunkSize();
-        double _y = pos.getY()/test.getChunkSize();
-        int x = (int)Math.floor(_x);
-        int y = (int)Math.floor(_y);        
-        //System.out.println(x);
-        x += test.getDimensions().getX()* 0.5 / test.getChunkSize();
-        y += test.getDimensions().getY()* 0.5 / test.getChunkSize();
         
-        Chunk[][] a = test.groupToChunks();
-        for(int i = 0; i < loadedChunks.length;i++){
-            switch(i){
-                case 0: loadedChunks[i] = a[x-1][y-1]; 
-                        break;
-                case 1: loadedChunks[i] = a[x][y-1]; 
-                        break;
-                case 2: loadedChunks[i] = a[x+1][y-1]; 
-                        break;
-                case 3: loadedChunks[i] = a[x-1][y]; 
-                        break;
-                case 4: loadedChunks[i] = a[x][y]; 
-                        break;
-                case 5: loadedChunks[i] = a[x+1][y]; 
-                        break;
-                case 6: loadedChunks[i] = a[x-1][y+1]; 
-                        break;
-                case 7: loadedChunks[i] = a[x][y+1]; 
-                        break;
-                case 8: loadedChunks[i] = a[x+1][y+1]; 
-                        break;              
-            };
-        }*/                
     }
 
     public boolean checkObstacle(Vector2 position) {
