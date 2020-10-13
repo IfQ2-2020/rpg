@@ -39,4 +39,8 @@ public class Vector2
         return new Vector2(this.getX() / divisor,
             this.getY() / divisor);
     }
+    
+    public Vector2 multX(int a){
+        return new Vector2(this.getX()*a,this.getY());
+    }
 }

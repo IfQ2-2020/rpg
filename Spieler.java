@@ -112,7 +112,7 @@ public class Spieler
                 }
                 break;
                 //Pfeil nach  rechts/ d
-                case 1: 
+                case 3: 
                 if(!world.checkObstacle(position.add(new Vector2(speed, 0))))
                 {
                     position=position.add(new Vector2(speed, 0)); 
@@ -126,8 +126,8 @@ public class Spieler
                 }
                 break;
                 //Pfeil nach links / a
-                case 3:
-                if(!world.checkObstacle(position.subtract(new Vector2(-speed, 0))))
+                case 1:
+                if(!world.checkObstacle(position.subtract(new Vector2(speed, 0))))
                 {
                     position=position.subtract(new Vector2(speed, 0));
                 }

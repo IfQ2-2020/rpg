@@ -48,12 +48,14 @@ public class World
         //....
         // Um chunk size teilen um die rel chunk pos zu bekommen
         Vector2 chunkPos = pos.divBy(16);
-        
-        Chunk[] newChunks = new Chunk[9];
+        int loadedChunksAmount = 1;
+        Chunk[] newChunks = new Chunk[(int)Math.pow((double)loadedChunksAmount*2+1, 2)];
         
         int i = 0;
-        for (int y = chunkPos.getY() - 1; y <= chunkPos.getY() + 1; y++) {
-            for (int x = chunkPos.getX() -1; x <= chunkPos.getX() + 1; x++) {
+        for (int y = chunkPos.getY() - loadedChunksAmount; 
+                y <= chunkPos.getY() + loadedChunksAmount; y++) {
+            for (int x = chunkPos.getX() - loadedChunksAmount;
+                    x <= chunkPos.getX() + loadedChunksAmount; x++) {
                 newChunks[i] = ChunkFile.loadChunk(x, y);
                 i++;
             }
@@ -68,7 +70,7 @@ public class World
             // Tile[] tiles = c.getTiles();
             // for (Tile tile : tiles) {
                 // if (tile.getPosition().equals(position)) {
-                    // return tile.getUeberwindbar();
+                    // return !tile.getUeberwindbar();
                 // }
             // }
         // }

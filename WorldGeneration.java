@@ -9,6 +9,7 @@ public class WorldGeneration {
     private int fullSeed;// laenge
 
     private static final int CHUNK_SIZE = 16;
+    private static final int ZOOM = 10;
     private static final double buffer = 0.95;
 
     public WorldGeneration(int width, int height, int seed) {
@@ -42,7 +43,7 @@ public class WorldGeneration {
             if(i != 0 && (i) % CHUNK_SIZE == 0) {
                 Chunk[] save = new Chunk[width / CHUNK_SIZE];
                 for (int s = 0; s < save.length; s++) {
-                    save[s] = new Chunk(new Vector2(s * CHUNK_SIZE*CHUNK_SIZE,i-CHUNK_SIZE), CHUNK_SIZE);
+                    save[s] = new Chunk(new Vector2(s,i/CHUNK_SIZE), CHUNK_SIZE);
                 }
                 
                 for (int a = 0; a < CHUNK_SIZE; a++) {
@@ -66,105 +67,23 @@ public class WorldGeneration {
                 double y = (double)i/((double)height);
                 
                 OpenSimplexNoise noise = new OpenSimplexNoise(seed);
-                double n = 4* noise.noise(10*x, 10*y, 0.8,5);
+                double n = ZOOM * noise.eval(ZOOM*x, ZOOM*y, 0.8);
                 n = n- Math.floor(n);
                 
-                // if(n > 0.3 + 0.4 * distance_squared(i,j)) {
-                    // System.out.print(1);
-                // }else{
-                    // System.out.print(0);
-                // }
-                // if(j == width-1)
-                    // System.out.println();
+                if(n > 0.4 + 0.4 * distance_squared(i,j)) {
+                    System.out.print(1);
+                }else{
+                    System.out.print(0);
+                }
+                if(j == width-1)
+                    System.out.println();
                 
-                if(n > 0.3 + 0.4 * distance_squared(i,j)){
+                if(n > 0.5 + 0.4 * distance_squared(i,j)){
                     generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
                     return;
                 }
                 generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
                 //System.out.println(j +"," + i);
-                
-                // double x = (double)j/((double)width);
-                // double y = (double)i/((double)height);
-                // // Typical Perlin noise
-                // double n = 20 * ImprovedNoise.noise(x, y, seed);
-                // // Wood like structure
-                // n = n - Math.floor(n);
-                
-                // double z = (double)1/(double)height;
-                 
-                // // Tile 0 indiziert im moment nichts und 1 fluss
-                // if(j != 0 && i != 0){
-                    // double a = 5 * ImprovedNoise.noise(x-z, y, seed);
-                    // a = a - Math.floor(a);
-                    // double b = 5 * ImprovedNoise.noise(x, y-z, seed);
-                    // b = b - Math.floor(b);
-                    
-                    // if(n >= a+buffer || a >= n+buffer || n >= b+buffer || b >= n+buffer){
-                        // generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
-                        // return;
-                    // }
-                    // generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
-                    // return;
-                // }else if(j == 0 && i!= 0){
-                    // double b = 5 * ImprovedNoise.noise(x, y-z, seed);
-                    // b = b - Math.floor(b);
-                    // if(n >= b+buffer || b >= n+buffer){
-                        // generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
-                        // return;
-                    // }
-                    // generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
-                    // return;
-                // }else if(j != 0 && i == 0){
-                    // double a = 5 * ImprovedNoise.noise(x-z, y,seed);
-                    // a = a - Math.floor(a);                    
-                    // if(n >= a+buffer || a >= n+buffer){
-                        // generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
-                        // return;
-                    // }
-                    // generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
-                    // return;
-                // }else if(j== 0&&i==0){
-                    // generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
-                // }
-                
-                // if(n <= 0.01){
-                    // //System.out.println(j + "," + i);
-                    // generatedTiles[j][i] = Tiles.createTileAt(2, j, i);
-                // }else 
-                
-                
-                // if(n > 0.3 /*+ 0.4 * distance_squared(i,j)*/) {
-                    // // Tile 0 indiziert im moment nichts und 1 fluss
-                    // if(generatedTiles[j][i] == null){
-                        // generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
-                    // }
-                    // //System.out.print(0);
-                // } else {
-                    // double a = ImprovedNoise.noise(10 * (x), 10 * (y-1/(double)width), seed);
-                    // double b = ImprovedNoise.noise(10 * (x-1/(double)width), 10 * (y), seed);
-                    // double c = ImprovedNoise.noise(10 * (x+1/(double)width), 10 * (y), seed);
-                    // double d = ImprovedNoise.noise(10 * (x), 10 * (y+1/(double)width), seed);
-                    // a = a - Math.floor(a);
-                    // b = b - Math.floor(b);
-                    // c = c - Math.floor(c);
-                    // d = d - Math.floor(d);
-
-                    // if((a > 0.3 + 0.4 * distance_squared(i,j) && y != 0 )||
-                            // (b > 0.3 + 0.4 * distance_squared(i,j) && x != 0) ||
-                            // (c > 0.3 + 0.4 * distance_squared(i,j) && x != width-1 )||
-                            // (d > 0.3 + 0.4 * distance_squared(i,j) && y != height - 1))
-                    // {
-                        // //System.out.print(1);
-                        // breiterRiver(j,i);
-                        // //generatedTiles[j][i] = Tiles.createTileAt(1, j, i);
-                    // } else {
-                        // if(generatedTiles[j][i] == null){
-                            // generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
-                        // }
-                        // //System.out.print(0);
-                    // }
-                // }
     }
     
     private void createPaths(int j, int i, int seed){
@@ -175,7 +94,7 @@ public class WorldGeneration {
                 double y = (double)i/((double)height);
                 
                 //Typical Perlin noise
-                double z = ImprovedNoise.noise(10 * x, 10 * y, seed * 10);
+                double z = ImprovedNoise.noise(ZOOM * x, ZOOM * y, seed * ZOOM);
                 //Wood like structure
                 z = z - Math.floor(z);
 
@@ -219,8 +138,8 @@ public class WorldGeneration {
     }
 
     private float distance_squared(int x, int y) {
-        float dx = 2 * x / dimensions.getX() - 1;
-        float dy = 2 * y / dimensions.getY() - 1;
+        float dx = 2 * x / dimensions.getX();
+        float dy = 2 * y / dimensions.getY();
         //at this point 0 <= dx <= 1 and 0 <= dy <= 1
         return dx*dx + dy*dy;
     }
