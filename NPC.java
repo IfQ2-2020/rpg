@@ -8,13 +8,16 @@ public class NPC
     private int facingDirection;
     private int speed;
     private BufferedImage mTexture;
+    private int textureID;
 
-    public NPC(int pId, String pName, int positionX, int positionY, int direction, int pSpeed){
+    public NPC(int pId, int p_TextureID, String pName, int positionX, int positionY, int direction, int pSpeed){
         id = pId;
+        textureID = p_TextureID;
         name = pName;
         position  = new Vector2(positionX, positionY);
         facingDirection = direction;
         speed = pSpeed;
+        mTexture = Textures.loadFile("./textures/npc/" + textureID + ".png");
     }
   
     public void setPosition(Vector2 sPosition){

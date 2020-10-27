@@ -12,9 +12,9 @@ public class Mob extends NPC
      */
     public Mob(int id, String pName, int x, int y, int direction, int pSpeed, 
         int lootId5, int lootId4, int lootId3, int lootId2, int lootId1, 
-        int pAggressionlv, int pHealth, int pStrength, int pLootingmass)
+        int pAggressionlv, int pHealth, int pStrength, int pLootingmass, int p_TextureID)
     {
-        super(id, pName, x, y, direction, pSpeed);
+        super(id, p_TextureID, pName, x, y, direction, pSpeed);
         agressionlv = pAggressionlv;
         health = pHealth;
         strength = pStrength;
