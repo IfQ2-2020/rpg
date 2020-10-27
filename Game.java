@@ -20,6 +20,7 @@ public class Game extends Gamemode implements KeyListener
         super(pContainer);
         world = pWorld;
         this.setFocusable(true);
+        this.addKeyListener(this);
     }
    
     private static final int relDrawPos = 768/2 - 32;
@@ -34,10 +35,12 @@ public class Game extends Gamemode implements KeyListener
         world.loadNextChunks();
         Chunk[] chunks = world.getLoadedChunks();
         for (Chunk c : chunks) {
+            if (c == null)
+                continue;
+            
             Tile[] tiles = c.getTiles();
             for (Tile tile : tiles) {
-                Vector2 relative = pos.subtract(tile.getPosition());
-                //relative.multX(-1);
+                Vector2 relative = tile.getPosition().subtract(pos);
                 //System.out.println(relative.getX()+" , " + relative.getY());
                 g.drawImage(tile.getTexture(),
                     relative.getX()*32 + relDrawPos,
@@ -64,8 +67,8 @@ public class Game extends Gamemode implements KeyListener
     }  
     
     public void keyPressed(KeyEvent e) {
-            world.getLocalPlayer().keyPressed(e.getKeyCode());
-        }
+        world.getLocalPlayer().keyPressed(e.getKeyCode());
+    }
         
     public void keyReleased(KeyEvent e) {
     }

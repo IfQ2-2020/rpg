@@ -70,13 +70,13 @@ public class WorldGeneration {
                 double n = ZOOM * noise.eval(ZOOM*x, ZOOM*y, 0.8);
                 n = n- Math.floor(n);
                 
-                if(n > 0.4 + 0.4 * distance_squared(i,j)) {
-                    System.out.print(1);
-                }else{
-                    System.out.print(0);
-                }
-                if(j == width-1)
-                    System.out.println();
+                // if(n > 0.4 + 0.4 * distance_squared(i,j)) {
+                    // System.out.print(1);
+                // }else{
+                    // System.out.print(0);
+                // }
+                // if(j == width-1)
+                    // System.out.println();
                 
                 if(n > 0.5 + 0.4 * distance_squared(i,j)){
                     generatedTiles[j][i] = Tiles.createTileAt(1, j, i);

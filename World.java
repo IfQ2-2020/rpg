@@ -19,7 +19,7 @@ public class World
         npcs = new NPC[32];
         spieler = new Spieler[8];
         loadedChunks = new Chunk[9];
-        localPlayer = new Spieler("OK",1,400,400,0,1,this);
+        localPlayer = new Spieler("OK",1,49,49,0,1,this);
         seed = pSeed;
         //Vorest
         test = new WorldGeneration(dimensions.getX(),dimensions.getY(),seed);
@@ -48,16 +48,14 @@ public class World
         //....
         // Um chunk size teilen um die rel chunk pos zu bekommen
         Vector2 chunkPos = pos.divBy(16);
-        int loadedChunksAmount = 1;
-        Chunk[] newChunks = new Chunk[(int)Math.pow((double)loadedChunksAmount*2+1, 2)];
+        Chunk[] newChunks = new Chunk[9];
         
         int i = 0;
-        for (int y = chunkPos.getY() - loadedChunksAmount; 
-                y <= chunkPos.getY() + loadedChunksAmount; y++) {
-            for (int x = chunkPos.getX() - loadedChunksAmount;
-                    x <= chunkPos.getX() + loadedChunksAmount; x++) {
-                newChunks[i] = ChunkFile.loadChunk(x, y);
-                i++;
+        for (int y = chunkPos.getY() - 1; 
+                y <= chunkPos.getY() + 1; y++) {
+            for (int x = chunkPos.getX() - 1;
+                    x <= chunkPos.getX() + 1; x++) {
+                newChunks[i++] = ChunkFile.loadChunk(x, y);
             }
         }
         
