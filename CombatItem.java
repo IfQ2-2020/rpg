@@ -11,9 +11,9 @@ public class CombatItem extends Item
     private double damage;
     private int range;
 
-    public CombatItem(int itemID, String pName, String pDesc, int p_durability, double p_damage, int p_range)
+    public CombatItem(int itemID, int p_TextureID, String pName, String pDesc, int p_durability, double p_damage, int p_range)
     {
-        super(itemID, pName, pDesc);
+        super(itemID, p_TextureID, pName, pDesc);
         if(durability >= 0)
         {
             durability = p_durability;

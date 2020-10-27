@@ -1,14 +1,20 @@
+import java.awt.image.BufferedImage;
+
 public class Item
 {
     private int id;
     private String name;
     private String beschreibung;
+    private int textureID;
+    private BufferedImage texture;
 
-    public Item(int p_ID, String p_Name, String p_Beschreibung)
+    public Item(int p_ID, int p_TextureID, String p_Name, String p_Beschreibung)
     {
         id = p_ID;
+        textureID = p_TextureID;
         name = p_Name;
         beschreibung = p_Beschreibung;
+        texture = Textures.loadFile("./textures/item/" + textureID + ".png");
     }
 
     public int getID()
@@ -40,10 +46,7 @@ public class Item
     {
         beschreibung = p_Beschreibung; 
     }
-
-    // TODO: als textur zurückgeben
-    public int getTexture()
-    {
-        return id;
-    }
+    
+    public BufferedImage getTexture() 
+    {return texture;}
 }
