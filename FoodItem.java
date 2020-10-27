@@ -2,10 +2,10 @@ public class FoodItem extends Item
 {
     private int Naehrwert;
 
-    public FoodItem(int itemID, String pName, String pBeschreibung,int p_Naehrwert)
+    public FoodItem(int itemID, int p_TextureID, String pName, String pBeschreibung,int p_Naehrwert)
 
     {
-        super(itemID, pName, pBeschreibung);
+        super(itemID, p_TextureID, pName, pBeschreibung);
         if(p_Naehrwert >= 0 && p_Naehrwert <=11)
         {
             Naehrwert = p_Naehrwert;
