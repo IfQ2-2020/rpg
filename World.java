@@ -19,7 +19,7 @@ public class World
         npcs = new NPC[32];
         spieler = new Spieler[8];
         loadedChunks = new Chunk[9];
-        localPlayer = new Spieler("OK",1,49,49,0,1,this);
+        localPlayer = new Spieler("OK",1,400,400,0,1,this);
         seed = pSeed;
         //Vorest
         test = new WorldGeneration(dimensions.getX(),dimensions.getY(),seed);

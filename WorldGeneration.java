@@ -66,8 +66,9 @@ public class WorldGeneration {
                 double x = (double)j/((double)width);
                 double y = (double)i/((double)height);
                 
-                OpenSimplexNoise noise = new OpenSimplexNoise(seed);
-                double n = ZOOM * noise.eval(ZOOM*x, ZOOM*y, 0.8);
+                //OpenSimplexNoise noise = new OpenSimplexNoise(seed);
+                ImprovedNoise noise = new ImprovedNoise();
+                double n = ZOOM * noise.noise(ZOOM*x, ZOOM*y, seed);
                 n = n- Math.floor(n);
                 
                 // if(n > 0.4 + 0.4 * distance_squared(i,j)) {
@@ -84,6 +85,8 @@ public class WorldGeneration {
                 }
                 generatedTiles[j][i] = Tiles.createTileAt(0, j, i);
                 //System.out.println(j +"," + i);
+                if(j == 400)
+                    generatedTiles[j][i] = Tiles.createTileAt(3, j, i);
     }
     
     private void createPaths(int j, int i, int seed){
